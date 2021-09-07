@@ -1,6 +1,6 @@
 {
-  "name": "vite-boilerplate",
-  "version": "0.0.0",
+  "name": "fortknights",
+  "version": "0.0.1",
   "scripts": {
     "client:dev": "vite",
     "client:build": "tsc && vite build",
