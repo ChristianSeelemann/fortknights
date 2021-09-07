@@ -4,8 +4,6 @@ type NavigationProps = {
   children: ReactNode;
 };
 
-function Navigation({ children }: NavigationProps): JSX.Element {
+export default function Navigation({ children }: NavigationProps): JSX.Element {
   return <button>{children}</button>;
 }
-
-export default Navigation;
