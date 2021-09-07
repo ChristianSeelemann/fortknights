@@ -10,8 +10,10 @@ export default {
   component: News,
 };
 
-export const NewsIcon = (): JSX.Element => <News />;
-export const ItemsIcon = (): JSX.Element => <Items />;
-export const StatsIcon = (): JSX.Element => <Stats />;
-export const FriendsIcon = (): JSX.Element => <Friends />;
-export const MapIcon = (): JSX.Element => <Map />;
+export const NewsIcon = (): JSX.Element => <News color="var(--clr-white)" />;
+export const ItemsIcon = (): JSX.Element => <Items color="var(--clr-white)" />;
+export const StatsIcon = (): JSX.Element => <Stats color="var(--clr-white)" />;
+export const FriendsIcon = (): JSX.Element => (
+  <Friends color="var(--clr-white)" />
+);
+export const MapIcon = (): JSX.Element => <Map color="var(--clr-white)" />;
