@@ -5,6 +5,7 @@
   justify-content: space-around;
   padding: 1.5rem 2rem 1.3125rem 2rem;
   align-items: baseline;
+  backdrop-filter: blur(4px);
 }
 
 .item {
