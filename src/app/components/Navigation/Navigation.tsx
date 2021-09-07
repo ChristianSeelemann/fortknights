@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './Navigation.module.css';
 
-export default function Navigation(): JSX.Element {
+type NavigationProps = {
+  active: 'news' | 'items' | 'stats' | 'friends' | 'map';
+};
+
+export default function Navigation({ active }: NavigationProps): JSX.Element {
   return (
     <nav className={styles.navigation}>
-      <div>
+      <div className={styles.item}>
         <svg
           width="20"
           height="18"
@@ -21,8 +25,15 @@ export default function Navigation(): JSX.Element {
             fill="#F0EEFF"
           />
         </svg>
+        <span>
+          {active === 'news' ? (
+            <div className={styles.dot}></div>
+          ) : (
+            <div className={styles.name}>NEWS</div>
+          )}
+        </span>
       </div>
-      <div>
+      <div className={styles.item}>
         <svg
           width="19"
           height="18"
@@ -35,8 +46,15 @@ export default function Navigation(): JSX.Element {
             fill="#F0EEFF"
           />
         </svg>
+        <span>
+          {active === 'items' ? (
+            <div className={styles.dot}></div>
+          ) : (
+            <div className={styles.name}>ITEMS</div>
+          )}
+        </span>
       </div>
-      <div>
+      <div className={styles.item}>
         <svg
           width="20"
           height="17"
@@ -49,8 +67,15 @@ export default function Navigation(): JSX.Element {
             fill="#F0EEFF"
           />
         </svg>
+        <span>
+          {active === 'stats' ? (
+            <div className={styles.dot}></div>
+          ) : (
+            <div className={styles.name}>STATS</div>
+          )}
+        </span>
       </div>
-      <div>
+      <div className={styles.item}>
         <svg
           width="23"
           height="16"
@@ -63,8 +88,15 @@ export default function Navigation(): JSX.Element {
             fill="#F0EEFF"
           />
         </svg>
+        <span>
+          {active === 'friends' ? (
+            <div className={styles.dot}></div>
+          ) : (
+            <div className={styles.name}>FRIENDS</div>
+          )}
+        </span>
       </div>
-      <div>
+      <div className={styles.item}>
         <svg
           width="18"
           height="18"
@@ -77,6 +109,13 @@ export default function Navigation(): JSX.Element {
             fill="#F0EEFF"
           />
         </svg>
+        <span>
+          {active === 'map' ? (
+            <div className={styles.dot}></div>
+          ) : (
+            <div className={styles.name}>MAP</div>
+          )}
+        </span>
       </div>
     </nav>
   );

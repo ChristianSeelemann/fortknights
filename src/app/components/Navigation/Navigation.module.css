@@ -1,0 +1,29 @@
+.navigation {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-white);
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5rem 2rem 1.3125rem 2rem;
+  align-items: baseline;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  height: 0.3125rem;
+  width: 0.3125rem;
+  background-color: var(--clr-primary);
+  border-radius: 50%;
+  margin-top: 0.625rem;
+}
+
+.name {
+  margin-top: 0.4375rem;
+  font-size: 0.5rem;
+  font-family: var(--ff-space);
+  font-weight: 700;
+}
