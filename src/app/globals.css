@@ -9,6 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: var(--clr-white);
+  text-decoration: none;
+}
+
 :root {
   --clr-white: #f0eeff;
   --clr-bg-dark: rgba(3, 16, 28, 0.8);
