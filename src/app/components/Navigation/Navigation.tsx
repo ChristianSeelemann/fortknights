@@ -16,7 +16,7 @@ export default function Navigation({ active }: NavigationProps): JSX.Element {
     <nav className={styles.navigation}>
       <Link to="/">
         <div className={styles.item}>
-          <News />
+          <News color="var(--clr-white)" />
           <span>
             {active === 'news' ? (
               <div className={styles.dot}></div>
@@ -28,7 +28,7 @@ export default function Navigation({ active }: NavigationProps): JSX.Element {
       </Link>
       <Link to="/items">
         <div className={styles.item}>
-          <Items />
+          <Items color="var(--clr-white)" />
           <span>
             {active === 'items' ? (
               <div className={styles.dot}></div>
@@ -40,7 +40,7 @@ export default function Navigation({ active }: NavigationProps): JSX.Element {
       </Link>
       <Link to="/stats">
         <div className={styles.item}>
-          <Stats />
+          <Stats color="var(--clr-white)" />
           <span>
             {active === 'stats' ? (
               <div className={styles.dot}></div>
@@ -52,7 +52,7 @@ export default function Navigation({ active }: NavigationProps): JSX.Element {
       </Link>
       <Link to="/friends">
         <div className={styles.item}>
-          <Friends />
+          <Friends color="var(--clr-white)" />
           <span>
             {active === 'friends' ? (
               <div className={styles.dot}></div>
@@ -64,7 +64,7 @@ export default function Navigation({ active }: NavigationProps): JSX.Element {
       </Link>
       <Link to="/map">
         <div className={styles.item}>
-          <Map />
+          <Map color="var(--clr-white)" />
           <span>
             {active === 'map' ? (
               <div className={styles.dot}></div>
