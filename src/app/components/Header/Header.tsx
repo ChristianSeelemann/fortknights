@@ -5,15 +5,14 @@ import Notification from '../Icons/Notification';
 import styles from './Header.module.css';
 
 type HeaderProps = {
-  textthin: string;
-  textbold: string;
+  textThin: string;
+  textBold: string;
   icon: 'notification' | 'close' | JSX.Element;
-  linkto?: string;
 };
 
 export default function Header({
-  textthin,
-  textbold,
+  textThin,
+  textBold,
   icon,
 }: HeaderProps): JSX.Element {
   const history = useHistory();
@@ -21,8 +20,8 @@ export default function Header({
   return (
     <header className={styles.header}>
       <h1 className={styles.headline}>
-        <span className={styles.thin}>{textthin}</span>
-        {textbold}
+        <span className={styles.thin}>{textThin}</span>
+        {textBold}
       </h1>
       <div className={styles.icon}>
         {icon === 'notification' && (

@@ -8,16 +8,16 @@ export default {
 };
 
 export const Notification = (): JSX.Element => (
-  <Header textthin="Fort" textbold="Knights" icon="notification" />
+  <Header textThin="Fort" textBold="Knights" icon="notification" />
 );
 export const Close = (): JSX.Element => (
-  <Header textthin="Fort" textbold="Knights" icon="close" />
+  <Header textThin="Fort" textBold="Knights" icon="close" />
 );
 
 export const Other = (): JSX.Element => (
   <Header
-    textthin="Fort"
-    textbold="Knights"
+    textThin="Fort"
+    textBold="Knights"
     icon={<Friends color="var(--clr-white)" />}
   />
 );
