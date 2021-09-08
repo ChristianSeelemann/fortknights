@@ -42,7 +42,7 @@ body {
     rgba(255, 105, 105, 1) 0%,
     rgba(255, 26, 39, 1)
   );
-  --gradient-sucess: linear-gradient(
+  --gradient-success: linear-gradient(
     135deg,
     rgba(104, 229, 59, 1) 0%,
     rgba(56, 205, 3, 1)
