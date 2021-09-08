@@ -27,7 +27,7 @@ export default function Header({
         {icon === 'notification' && (
           <Notification
             color="var(--clr-white)"
-            activecolor="var(--clr-primary)"
+            activeColor="var(--clr-primary)"
           />
         )}
         {icon === 'close' && (
