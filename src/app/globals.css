@@ -34,4 +34,5 @@ a {
 h1 {
   font-family: var(--ff-oxanium);
   font-weight: 800;
+  font-size: 1.375rem;
 }
