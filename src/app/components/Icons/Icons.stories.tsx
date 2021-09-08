@@ -3,6 +3,7 @@ import Friends from './Friends';
 import Items from './Items';
 import Map from './Map';
 import News from './News';
+import Notification from './Notification';
 import Stats from './Stats';
 
 export default {
@@ -17,3 +18,6 @@ export const FriendsIcon = (): JSX.Element => (
   <Friends color="var(--clr-white)" />
 );
 export const MapIcon = (): JSX.Element => <Map color="var(--clr-white)" />;
+export const NotificationIcon = (): JSX.Element => (
+  <Notification color="var(--clr-white)" activecolor="var(--clr-primary)" />
+);
