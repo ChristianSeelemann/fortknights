@@ -24,6 +24,31 @@ body {
   --clr-accent: rgba(113, 90, 255, 1);
   --ff-space: 'Space Grotesk', sans-serif;
   --ff-oxanium: 'Oxanium', cursive;
+  --gradient-primary: linear-gradient(
+    135deg,
+    rgba(105, 147, 255, 1) 0%,
+    rgba(65, 118, 255, 1)
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    rgba(176, 143, 255, 1) 0%,
+    rgba(148, 105, 255, 1)
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    rgba(111, 202, 255, 1) 0%,
+    rgba(49, 180, 255, 1)
+  );
+  --gradient-warning: linear-gradient(
+    135deg,
+    rgba(255, 105, 105, 1) 0%,
+    rgba(255, 26, 39, 1)
+  );
+  --gradient-sucess: linear-gradient(
+    135deg,
+    rgba(104, 229, 59, 1) 0%,
+    rgba(56, 205, 3, 1)
+  );
 }
 
 a {
