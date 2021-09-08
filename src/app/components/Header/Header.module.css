@@ -1,0 +1,25 @@
+.header {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-white);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  height: 4.375rem;
+}
+
+.headline {
+  position: relative;
+  top: 0.2rem;
+}
+
+.icon {
+  position: relative;
+  top: 0.125rem;
+}
+
+.thin {
+  font-weight: 300;
+}
