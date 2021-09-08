@@ -20,6 +20,6 @@ export const FriendsIcon = (): JSX.Element => (
 );
 export const MapIcon = (): JSX.Element => <Map color="var(--clr-white)" />;
 export const NotificationIcon = (): JSX.Element => (
-  <Notification color="var(--clr-white)" activecolor="var(--clr-primary)" />
+  <Notification color="var(--clr-white)" activeColor="var(--clr-primary)" />
 );
 export const CloseIcon = (): JSX.Element => <Close color="var(--clr-white)" />;
