@@ -21,7 +21,7 @@ body {
   --clr-bg-dark: rgba(3, 16, 28, 0.8);
   --clr-primary: rgba(88, 135, 255, 1);
   --clr-secondary: rgba(166, 130, 255, 1);
-  --clr-acent: rgba(113, 90, 255, 1);
+  --clr-accent: rgba(113, 90, 255, 1);
   --ff-space: 'Space Grotesk', sans-serif;
   --ff-oxanium: 'Oxanium', cursive;
 }
