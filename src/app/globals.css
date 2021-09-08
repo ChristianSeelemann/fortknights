@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;800&family=Space+Grotesk:wght@700&display=swap');
 
 *,
 *::after,
@@ -16,11 +16,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: var(--clr-white);
-  text-decoration: none;
-}
-
 :root {
   --clr-white: #f0eeff;
   --clr-bg-dark: rgba(3, 16, 28, 0.8);
@@ -28,4 +23,15 @@ a {
   --clr-secondary: rgba(166, 130, 255, 1);
   --clr-acent: rgba(113, 90, 255, 1);
   --ff-space: 'Space Grotesk', sans-serif;
+  --ff-oxanium: 'Oxanium', cursive;
+}
+
+a {
+  color: var(--clr-white);
+  text-decoration: none;
+}
+
+h1 {
+  font-family: var(--ff-oxanium);
+  font-weight: 800;
 }
