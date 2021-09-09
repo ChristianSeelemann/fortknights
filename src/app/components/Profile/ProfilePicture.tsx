@@ -8,5 +8,5 @@ interface ProfilePictureProps {
 export default function ProfilePicture({
   image,
 }: ProfilePictureProps): JSX.Element {
-  return <img className={styles.ProfilePicture} src={image} alt="Avatar" />;
+  return <img className={styles.profilePicture} src={image} alt="Avatar" />;
 }

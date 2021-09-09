@@ -38,14 +38,14 @@ export default function Card({
 
   return (
     <Link to={link}>
-      <div className={styles.Card}>
-        <img className={styles.CardImg} src={image} alt="News Image" />
-        <div className={styles.CardOverlay}>
-          <div className={styles.CardTags}>
+      <div className={styles.card}>
+        <img className={styles.card__img} src={image} alt="News Image" />
+        <div className={styles.card__overlay}>
+          <div className={styles.card__tags}>
             <Tag text={modeName} style={modeStyle} />
             <Tag text={date} style="date"></Tag>
           </div>
-          <div className={styles.CardTitle}>{title}</div>
+          <div className={styles.card__title}>{title}</div>
         </div>
       </div>
     </Link>

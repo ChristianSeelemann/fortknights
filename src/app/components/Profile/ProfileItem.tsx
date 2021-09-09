@@ -18,13 +18,13 @@ export default function ProfileItem({
   link,
 }: ProfileItemProps): JSX.Element {
   return (
-    <div className={styles.ProfileItem}>
+    <div className={styles.profileItem}>
       <Link to={link}>
         <ProfilePicture image="https://image.api.playstation.com/cdn/EP1464/CUSA07669_00/arN9Uez8UTKixtUdBHibVbzUOinKBMAB.png?w=960&h=960" />
       </Link>
-      <div className={styles.ProfileItemNotPicture}>
+      <div className={styles.profileItem__notPicture}>
         <Link to={link}>
-          <div className={styles.ProfileItemInfo}>
+          <div className={styles.profileItem__info}>
             {username}
             <span>
               {games} Games | {wins} Wins
