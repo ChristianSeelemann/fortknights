@@ -7,11 +7,11 @@ export default {
 };
 
 export const BattleRoyale = (): JSX.Element => (
-  <Tag style="br" text="Battle Royale" />
+  <Tag style="battleroyale" text="Battle Royale" />
 );
 
 export const SaveTheWorld = (): JSX.Element => (
-  <Tag style="stw" text="Save the World" />
+  <Tag style="savetheworld" text="Save the World" />
 );
 
 export const Creative = (): JSX.Element => (

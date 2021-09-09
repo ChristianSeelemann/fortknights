@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Tag.module.css';
 
 interface TagProps {
-  style: 'br' | 'stw' | 'creative' | 'date';
+  style: 'battleroyale' | 'savetheworld' | 'creative' | 'date';
   text: string;
   onClick?: () => void;
 }

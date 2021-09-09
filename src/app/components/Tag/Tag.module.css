@@ -13,11 +13,11 @@
   display: flex;
 }
 
-.br {
+.battleroyale {
   background: var(--gradient-primary);
 }
 
-.stw {
+.savetheworld {
   background: var(--gradient-secondary);
 }
 
