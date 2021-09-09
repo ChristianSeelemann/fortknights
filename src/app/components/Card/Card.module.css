@@ -1,10 +1,10 @@
-.Card {
+.card {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.CardImg {
+.card__img {
   height: 16rem;
   width: 100%;
   object-position: center;
@@ -15,7 +15,7 @@
   border-radius: 1rem;
 }
 
-.CardOverlay {
+.card__overlay {
   height: 16rem;
   display: flex;
   flex-direction: column;
@@ -23,13 +23,13 @@
   padding: 0.75rem 1rem 1rem 1rem;
 }
 
-.CardTags {
+.card__tags {
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.CardTitle {
+.card__title {
   background: var(--clr-bg-dark);
   position: relative;
   bottom: 0;

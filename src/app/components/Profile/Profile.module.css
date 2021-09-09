@@ -1,4 +1,4 @@
-.ProfilePicture {
+.profilePicture {
   height: 3.125rem;
   width: 3.125rem;
   border-radius: 50%;
@@ -8,30 +8,30 @@
   box-shadow: 0 0.125rem 0.3125rem 0 rgba(0, 0, 0, 0.25);
 }
 
-.ProfileItem {
+.profileItem {
   display: flex;
   align-items: center;
 }
 
-.ProfileItemNotPicture {
+.profileItem__notPicture {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.ProfileItem button {
+.profileItem button {
   justify-content: flex-end;
 }
 
-.ProfileItemInfo {
+.profileItem__info {
   display: flex;
   flex-direction: column;
   font-size: 0.8125rem;
   padding-left: 0.75rem;
 }
 
-.ProfileItemInfo span {
+.profileItem__info span {
   font-weight: 400;
   font-weight: 0.625rem;
 }
