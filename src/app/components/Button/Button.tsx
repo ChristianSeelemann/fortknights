@@ -15,14 +15,7 @@ export default function Button({
   onClick,
 }: ButtonProps): JSX.Element {
   return (
-    <button
-      onClick={onClick}
-      className={`${styles.button} ${style === 'accent' && styles.accent} ${
-        style === 'primary' && styles.primary
-      } ${style === 'secondary' && styles.secondary} ${
-        style === 'warning' && styles.warning
-      } ${style === 'success' && styles.success}`}
-    >
+    <button onClick={onClick} className={`${styles.button} ${styles[style]}`}>
       <span className={styles.icon}>{icon}</span>
       {text}
     </button>
