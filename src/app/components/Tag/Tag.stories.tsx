@@ -17,3 +17,5 @@ export const SaveTheWorld = (): JSX.Element => (
 export const Creative = (): JSX.Element => (
   <Tag style="creative" text="Creative" />
 );
+
+export const Date = (): JSX.Element => <Tag style="date" text="24.08.21" />;
