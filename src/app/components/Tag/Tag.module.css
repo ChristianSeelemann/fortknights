@@ -24,3 +24,8 @@
 .creative {
   background: var(--gradient-accent);
 }
+
+.date {
+  background: var(--clr-white);
+  color: var(--clr-bg-dark);
+}
