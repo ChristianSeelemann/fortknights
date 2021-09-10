@@ -6,6 +6,7 @@ import Map from './Map';
 import News from './News';
 import Notification from './Notification';
 import Stats from './Stats';
+import ToTop from './ToTop';
 
 export default {
   title: 'Component/Icons',
@@ -23,3 +24,4 @@ export const NotificationIcon = (): JSX.Element => (
   <Notification color="var(--clr-white)" activeColor="var(--clr-primary)" />
 );
 export const CloseIcon = (): JSX.Element => <Close color="var(--clr-white)" />;
+export const ToTopIcon = (): JSX.Element => <ToTop color="var(--clr-white)" />;
