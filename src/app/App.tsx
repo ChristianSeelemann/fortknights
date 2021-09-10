@@ -7,14 +7,10 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route path="/news">
-          <main>
-            <News />
-          </main>
+          <News />
         </Route>
         <Route path="/">
-          <main>
-            <News />
-          </main>
+          <News />
         </Route>
       </Switch>
     </BrowserRouter>
