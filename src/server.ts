@@ -1,20 +1,24 @@
 import dotenv from 'dotenv';
+import express from 'express';
 dotenv.config();
 
-import express from 'express';
-
-const app = express();
 const port = process.env.PORT || 3001;
-
+const app = express();
 app.use(express.json());
-
-app.get('/api', (_request, response) => {
-  response.send('Hello API');
-});
+app.disable('x-powered-by');
 
 app.use('/storybook', express.static('dist/storybook'));
-app.use(express.static('dist/app'));
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}.`);
+app.get('/api/', async (_req, res) => {
+  res.status(200).json({ message: 'API is running' });
+});
+
+app.use(express.static('dist/app'));
+app.get('*', (_request, response) => {
+  response.sendFile('index.html', { root: 'dist/app' });
+});
+
+app.listen(port, async () => {
+  console.log(`Listening at http://localhost:${port}`);
+  console.log(`Storybook is at http://localhost:${port}/storybook`);
 });
