@@ -1,9 +1,8 @@
 {
   "theme_color": "#102E4A",
   "background_color": "#071A2C",
-  "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "display": "fullscreen",
+  "start_url": ".",
   "name": "FortKnights",
   "short_name": "Knights",
   "description": "Fortnite Fan App",
