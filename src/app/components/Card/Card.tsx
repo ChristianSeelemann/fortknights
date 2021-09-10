@@ -38,7 +38,7 @@ export default function Card({
 
   return (
     <Link to={link}>
-      <div className={styles.card}>
+      <article className={styles.card}>
         <img className={styles.card__img} src={image} alt="News Image" />
         <div className={styles.card__overlay}>
           <div className={styles.card__tags}>
@@ -47,7 +47,7 @@ export default function Card({
           </div>
           <div className={styles.card__title}>{title}</div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 }
