@@ -6,6 +6,11 @@
   padding: 1.5rem 2rem 1.3125rem 2rem;
   align-items: baseline;
   backdrop-filter: blur(4px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .item {
