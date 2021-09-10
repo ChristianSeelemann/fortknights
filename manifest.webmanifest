@@ -3,7 +3,7 @@
   "background_color": "#071A2C",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/news",
+  "start_url": "/",
   "name": "FortKnights",
   "short_name": "Knights",
   "description": "Fortnite Fan App",
