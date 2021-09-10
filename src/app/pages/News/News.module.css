@@ -1,0 +1,28 @@
+.news {
+  padding: 6.25rem 0 0 0;
+  background: url('../../../assets/bg_1.webp'), var(--clr-bg-dark);
+  background-blend-mode: saturation;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.news__tagGroup {
+  display: flex;
+  gap: 0.625rem;
+  padding: 0 1.5rem;
+}
+
+.news__itemGroup {
+  padding: 0 1.5rem;
+}
+
+.news__itemGroup article {
+  padding: 1.5rem 0 0 0;
+}
+
+.news__toDo {
+  text-align: center;
+  padding: 2rem 0 7rem 0;
+}
