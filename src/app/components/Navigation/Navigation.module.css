@@ -2,7 +2,7 @@
   background-color: var(--clr-bg-dark);
   color: var(--clr-white);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 1.5rem 2rem 1.3125rem 2rem;
   align-items: baseline;
   backdrop-filter: blur(4px);
