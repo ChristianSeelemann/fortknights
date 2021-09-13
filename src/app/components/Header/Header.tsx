@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Close from '../Icons/Close';
 import Fortnite from '../Icons/Fortnite';
 import Notification from '../Icons/Notification';
