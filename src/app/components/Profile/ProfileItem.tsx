@@ -6,8 +6,8 @@ import ProfilePicture from './ProfilePicture';
 
 interface ProfileItemProps {
   username: string;
-  games: string;
-  wins: string;
+  games: string | number;
+  wins: string | number;
   link: string;
 }
 
