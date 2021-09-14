@@ -8,11 +8,13 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 
-app.get('/api/stats/:id', async (request, response) => {
+app.get('/api/lookup/:id', async (request, response) => {
   const { id } = request.params;
-  const user = await fetch(
-    `https://fortnite-api.com/v2/stats/br/v2?name=${id}`
-  );
+  const user = await fetch(`https://fortniteapi.io/v1/lookup?username=${id}`, {
+    headers: {
+      Authorization: 'e63f4351-b625ddac-254af606-5a2d8ef0',
+    },
+  });
   const userData = await user.json();
   response.json(userData);
 });
