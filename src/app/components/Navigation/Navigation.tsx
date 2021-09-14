@@ -14,7 +14,7 @@ type NavigationProps = {
 export default function Navigation({ active }: NavigationProps): JSX.Element {
   return (
     <nav className={styles.navigation}>
-      <Link to="/">
+      <Link to="/news">
         <div className={styles.item}>
           <News color="var(--clr-white)" />
           <span>

@@ -8,6 +8,11 @@
   backdrop-filter: blur(4px);
   text-transform: uppercase;
   height: 4.375rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .headline {

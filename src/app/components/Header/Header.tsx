@@ -1,13 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Close from '../Icons/Close';
+import Fortnite from '../Icons/Fortnite';
 import Notification from '../Icons/Notification';
 import styles from './Header.module.css';
 
 type HeaderProps = {
   textThin: string;
   textBold: string;
-  icon: 'notification' | 'close' | JSX.Element;
+  icon: 'notification' | 'close' | 'fortnite' | JSX.Element;
 };
 
 export default function Header({
@@ -30,10 +31,14 @@ export default function Header({
             activeColor="var(--clr-primary)"
           />
         )}
+        {icon === 'fortnite' && <Fortnite color="var(--clr-white)" />}
         {icon === 'close' && (
           <Close color="var(--clr-white)" onClick={() => history.goBack()} />
         )}
-        {icon !== 'close' && icon !== 'notification' && icon}
+        {icon !== 'close' &&
+          icon !== 'notification' &&
+          icon !== 'fortnite' &&
+          icon}
       </div>
     </header>
   );

@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import News from './pages/News/News';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <header>
-        <p>Navigation</p>
-      </header>
-
       <Switch>
+        <Route path="/news">
+          <News />
+        </Route>
         <Route path="/">
-          <main>Home</main>
+          <News />
         </Route>
       </Switch>
     </BrowserRouter>
