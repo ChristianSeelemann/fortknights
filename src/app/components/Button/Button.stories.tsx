@@ -1,5 +1,4 @@
 import React from 'react';
-import Friends from '../Icons/Friends';
 import Button from './Button';
 
 export default {
@@ -28,9 +27,5 @@ export const success = (): JSX.Element => (
 );
 
 export const withIcon = (): JSX.Element => (
-  <Button
-    style="primary"
-    text="Success"
-    icon={<Friends color="var(--clr-white)" />}
-  />
+  <Button style="primary" text="Success" icon="Stats" />
 );
