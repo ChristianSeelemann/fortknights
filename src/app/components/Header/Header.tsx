@@ -7,7 +7,7 @@ import styles from './Header.module.css';
 type HeaderProps = {
   textThin: string;
   textBold: string;
-  onClick: () => void;
+  onClick?: () => void;
   icon: 'notification' | 'close' | 'fortnite' | JSX.Element;
 };
 
