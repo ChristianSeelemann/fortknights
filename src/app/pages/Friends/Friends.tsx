@@ -23,6 +23,10 @@ export default function Friends(): JSX.Element {
     data && isLoading === false && friendList.push(data);
   });
 
+  function handleUnfollowClick() {
+    console.log('Clicked!');
+  }
+
   return (
     <section className={styles.friends}>
       <Header
