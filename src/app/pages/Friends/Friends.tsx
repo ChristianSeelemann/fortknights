@@ -5,6 +5,7 @@ import ToTop from '../../components/Icons/ToTop';
 import Navigation from '../../components/Navigation/Navigation';
 import ProfileItem from '../../components/Profile/ProfileItem';
 import useFetch from '../../hooks/useFetch';
+import useFriends from '../../hooks/useFriends';
 import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
 
