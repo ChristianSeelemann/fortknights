@@ -22,17 +22,15 @@ app.get('/api/lookup/:id', async (request, response) => {
 app.get('/api/stats/:id', async (request, response) => {
   const { id } = request.params;
 
-  const testFetch = await fetch(
-    `https://fortniteapi.io/v1/stats?account=${id}`,
-    {
-      headers: {
-        Authorization: 'e63f4351-b625ddac-254af606-5a2d8ef0',
-      },
-    }
-  );
-  const testData = await testFetch.json();
+  const res = await fetch(`https://fortniteapi.io/v1/stats?account=${id}`, {
+    headers: {
+      Authorization: 'e63f4351-b625ddac-254af606-5a2d8ef0',
+    },
+  });
+  const data = await res.json();
+  const jointData = { data, id };
 
-  response.json(testData);
+  response.json(jointData);
 });
 
 app.get('/api', (_request, response) => {
