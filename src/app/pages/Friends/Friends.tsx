@@ -10,23 +10,14 @@ import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
 
 export default function Friends(): JSX.Element {
-  const sampleData = [
-    '65084a8f1c464ff8939c92869f4bf9d3',
-    'e8eecb7f5fde410baf2c290f5752015d',
-    'fdbca122c846485f9a89cfeb84527469',
-    '2860abbef13d4baaa31794fd15097d53',
-    '264fbac0c49f4d488b43302272a0b37a',
-  ];
+  const { friendsData, handleFriendClick } = useFriends();
 
   const friendList: statsFromAPI[] = [];
-  sampleData.map((id) => {
+  friendsData.map((id: number) => {
     const { data, isLoading } = useFetch<statsFromAPI>(`/api/stats/${id}`);
     data && isLoading === false && friendList.push(data);
+    console.log(data);
   });
-
-  function handleUnfollowClick() {
-    console.log('Clicked!');
-  }
 
   return (
     <section className={styles.friends}>
@@ -40,13 +31,13 @@ export default function Friends(): JSX.Element {
         <section className={styles.friends__itemGroup}>
           {friendList.map((user, index) => (
             <ProfileItem
-              username={user.name}
-              games={user.global_stats.solo.matchesplayed}
-              wins={user.global_stats.solo.placetop1}
+              username={user.data.name}
+              games={user.data.global_stats.solo.matchesplayed}
+              wins={user.data.global_stats.solo.placetop1}
               link="#"
               avatar={`../../src/assets/avatars/${index}.webp`}
-              onClick={() => handleUnfollowClick()}
-              key={user.name}
+              onClick={() => handleFriendClick(user.id)}
+              key={user.id}
             />
           ))}
         </section>
