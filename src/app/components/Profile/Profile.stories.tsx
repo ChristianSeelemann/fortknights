@@ -12,5 +12,11 @@ export const Picture = (): JSX.Element => (
 );
 
 export const Item = (): JSX.Element => (
-  <ProfileItem username="PaulPanzer1337" games="1451" wins="31" link="#" />
+  <ProfileItem
+    username="PaulPanzer1337"
+    games="1451"
+    wins="31"
+    link="#"
+    avatar="https://image.api.playstation.com/cdn/EP1464/CUSA07669_00/arN9Uez8UTKixtUdBHibVbzUOinKBMAB.png?w=960&h=960"
+  />
 );
