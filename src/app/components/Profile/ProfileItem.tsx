@@ -9,6 +9,7 @@ interface ProfileItemProps {
   games: string | number;
   wins: string | number;
   link: string;
+  avatar: string;
 }
 
 export default function ProfileItem({
@@ -16,11 +17,12 @@ export default function ProfileItem({
   games,
   wins,
   link,
+  avatar,
 }: ProfileItemProps): JSX.Element {
   return (
     <div className={styles.profileItem}>
       <Link to={link}>
-        <ProfilePicture image="https://image.api.playstation.com/cdn/EP1464/CUSA07669_00/arN9Uez8UTKixtUdBHibVbzUOinKBMAB.png?w=960&h=960" />
+        <ProfilePicture image={avatar} />
       </Link>
       <div className={styles.profileItem__notPicture}>
         <Link to={link}>
