@@ -5,66 +5,8 @@ import ToTop from '../../components/Icons/ToTop';
 import Navigation from '../../components/Navigation/Navigation';
 import ProfileItem from '../../components/Profile/ProfileItem';
 import useFetch from '../../hooks/useFetch';
+import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
-
-interface statsFromAPI {
-  result: boolean;
-  name: string;
-  account: {
-    level: number | null;
-    progress_pct: number | null;
-  };
-  global_stats: {
-    squad: {
-      placetop1: number;
-      kd: number;
-      winrate: number;
-      placetop3: number;
-      placetop5: number;
-      placetop6: number;
-      placetop10: number;
-      placetop12: number;
-      placetop25: number;
-      kills: number;
-      matchesplayed: number;
-      minutesplayed: number;
-      score: number;
-      playersoutlived: number;
-    };
-    duo: {
-      placetop1: number;
-      kd: number;
-      winrate: number;
-      placetop3: number;
-      placetop5: number;
-      placetop6: number;
-      placetop10: number;
-      placetop12: number;
-      placetop25: number;
-      kills: number;
-      matchesplayed: number;
-      minutesplayed: number;
-      score: number;
-      playersoutlived: number;
-    };
-    solo: {
-      placetop1: number;
-      kd: number;
-      winrate: number;
-      placetop3: number;
-      placetop5: number;
-      placetop6: number;
-      placetop10: number;
-      placetop12: number;
-      placetop25: number;
-      kills: number;
-      matchesplayed: number;
-      minutesplayed: number;
-      score: number;
-      playersoutlived: number;
-    };
-  };
-}
 
 export default function Friends(): JSX.Element {
   const sampleData = [
