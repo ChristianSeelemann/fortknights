@@ -44,6 +44,7 @@ export default function Friends(): JSX.Element {
               wins={user.global_stats.solo.placetop1}
               link="#"
               avatar={`../../src/assets/avatars/${index}.webp`}
+              onClick={() => handleUnfollowClick()}
               key={user.name}
             />
           ))}
