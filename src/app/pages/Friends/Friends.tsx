@@ -91,12 +91,13 @@ export default function Friends(): JSX.Element {
       <main>
         <h2>Friends you Follow</h2>
         <section className={styles.friends__itemGroup}>
-          {friendList.map((user) => (
+          {friendList.map((user, index) => (
             <ProfileItem
               username={user.name}
               games={user.global_stats.solo.matchesplayed}
               wins={user.global_stats.solo.placetop1}
               link="#"
+              avatar={`../../src/assets/avatars/${index}.webp`}
               key={user.name}
             />
           ))}
