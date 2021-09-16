@@ -21,6 +21,7 @@ body {
   --clr-primary: rgba(88, 135, 255, 1);
   --clr-secondary: rgba(166, 130, 255, 1);
   --clr-accent: rgba(113, 90, 255, 1);
+  --clr-lightblue: rgba(131, 153, 210, 1);
   --ff-space: 'Space Grotesk', sans-serif;
   --ff-oxanium: 'Oxanium', cursive;
   --gradient-primary: linear-gradient(
@@ -45,8 +46,8 @@ body {
   );
   --gradient-success: linear-gradient(
     135deg,
-    rgba(104, 229, 59, 1) 0%,
-    rgba(56, 205, 3, 1)
+    rgb(62, 189, 15) 0%,
+    rgb(38, 134, 3)
   );
 }
 
