@@ -10,7 +10,7 @@ import Stats from '../Icons/Stats';
 import styles from './Button.module.css';
 
 interface ButtonProps {
-  style: 'warning' | 'success' | 'primary' | 'secondary' | 'accent';
+  style: 'warning' | 'success' | 'primary' | 'secondary' | 'accent' | string;
   text: string;
   icon?:
     | 'Close'
