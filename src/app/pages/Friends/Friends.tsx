@@ -69,16 +69,17 @@ export default function Friends(): JSX.Element {
           <h2>Friends you Follow</h2>
           <section className={styles.friends__itemGroup}>
             {friendList &&
+              friendsData.length !== 0 &&
               friendList.map((user, index) => (
                 <ProfileItem
                   username={user.data.name}
                   games={
-                    user.data.global_stats !== null
+                    user.data.global_stats && user.data.global_stats !== null
                       ? user.data.global_stats.solo.matchesplayed
                       : '0'
                   }
                   wins={
-                    user.data.global_stats !== null
+                    user.data.global_stats && user.data.global_stats !== null
                       ? user.data.global_stats.solo.placetop1
                       : '0'
                   }
@@ -90,6 +91,8 @@ export default function Friends(): JSX.Element {
                   key={user.id}
                 />
               ))}
+            {friendsData.length === 0 &&
+              'There is no Knight in your list :( Wanna add your first Knight?'}
           </section>
           <div className={styles.news__toDo}>
             <ToTop color="var(--clr-white)" />
