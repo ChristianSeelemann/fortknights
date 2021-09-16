@@ -17,6 +17,8 @@ export const Item = (): JSX.Element => (
     games="1451"
     wins="31"
     link="#"
+    buttonStyle="warning"
+    buttonText="Unfollow"
     avatar="https://image.api.playstation.com/cdn/EP1464/CUSA07669_00/arN9Uez8UTKixtUdBHibVbzUOinKBMAB.png?w=960&h=960"
   />
 );
