@@ -11,6 +11,7 @@
 .profileItem {
   display: flex;
   align-items: center;
+  padding-bottom: 0.25rem;
 }
 
 .profileItem__notPicture {
