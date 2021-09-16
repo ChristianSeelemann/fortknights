@@ -10,26 +10,45 @@ import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
 
 export default function Friends(): JSX.Element {
+  const [modalClosed, setModal] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+  const [result, setResult] = useState(false);
+  const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
+
   const { friendsData, handleFriendClick } = useFriends();
+  const jointFriends = friendsData.join('&id=');
 
-  const friendList: statsFromAPI[] = [];
-  friendsData.map((id: number) => {
-    const { data, isLoading } = useFetch<statsFromAPI>(`/api/stats/${id}`);
-    data && isLoading === false && friendList.push(data);
-    console.log(data);
-  });
+  const { data: friendList } = useFetch<statsFromAPI[]>(
+    `/api/stats/?id=${jointFriends}`
+  );
 
-  const [modal, setModal] = useState(true);
-
-  function openModal() {
-    setModal(true);
+  function modalClick() {
+    setModal(!modalClosed);
   }
 
-  const addFriendButton = document.querySelector('#friends__modal');
-  modal === false &&
-    addFriendButton?.classList.add(`${styles.friends__modal_hidden}`);
-  modal === true &&
-    addFriendButton?.classList.remove(`${styles.friends__modal_hidden}`);
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+
+    const lookupFetch = await fetch(`/api/lookup/${inputValue}`);
+    const lookupData = await lookupFetch.json();
+
+    if (lookupData.result === false) {
+      setUser('error');
+      setResult(true);
+      return;
+    }
+
+    const userFetch = await fetch(`/api/stats/?id=${lookupData.account_id}`);
+    const userData = await userFetch.json();
+    setUser(userData);
+    setResult(true);
+  }
+
+  const addFriendButton = document.querySelector('#modal');
+  modalClosed === false &&
+    addFriendButton?.classList.add(`${styles.modal_hidden}`);
+  modalClosed === true &&
+    addFriendButton?.classList.remove(`${styles.modal_hidden}`);
 
   return (
     <>
@@ -42,24 +61,35 @@ export default function Friends(): JSX.Element {
               style="primary"
               text="Add Friend"
               icon="Friends"
-              onClick={() => openModal()}
+              onClick={() => modalClick()}
             />
           }
         ></Header>
         <main>
           <h2>Friends you Follow</h2>
           <section className={styles.friends__itemGroup}>
-            {friendList.map((user, index) => (
-              <ProfileItem
-                username={user.data.name}
-                games={user.data.global_stats.solo.matchesplayed}
-                wins={user.data.global_stats.solo.placetop1}
-                link="#"
-                avatar={`../../src/assets/avatars/${index}.webp`}
-                onClick={() => handleFriendClick(user.id)}
-                key={user.id}
-              />
-            ))}
+            {friendList &&
+              friendList.map((user, index) => (
+                <ProfileItem
+                  username={user.data.name}
+                  games={
+                    user.data.global_stats !== null
+                      ? user.data.global_stats.solo.matchesplayed
+                      : '0'
+                  }
+                  wins={
+                    user.data.global_stats !== null
+                      ? user.data.global_stats.solo.placetop1
+                      : '0'
+                  }
+                  link="#"
+                  avatar={`../../src/assets/avatars/${index}.webp`}
+                  buttonText="Unfollow"
+                  buttonStyle="warning"
+                  onClick={() => handleFriendClick(user.id)}
+                  key={user.id}
+                />
+              ))}
           </section>
           <div className={styles.news__toDo}>
             <ToTop color="var(--clr-white)" />
@@ -72,8 +102,56 @@ export default function Friends(): JSX.Element {
         </main>
         <Navigation active="friends" />
       </section>
-      <div id="friends__modal" className={styles.friends__modal}>
-        Modal
+      <div id="modal" className={styles.modal}>
+        <Header
+          textThin="Add"
+          textBold="Knight"
+          icon="close"
+          onClick={() => modalClick()}
+        />
+        <section className={styles.modal__section}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <input
+              className={styles.form__input}
+              type="text"
+              placeholder="Type in your Knights Name"
+              value={inputValue}
+              onChange={(event) => setInputValue(event.target.value)}
+            />
+          </form>
+          {user === 'error' && (
+            <span className={styles.modal__span}>
+              There is no Knight with this Name... :(
+              <br />
+              Maybe try another one :)
+            </span>
+          )}
+          {result === true && user !== 'error' && user !== '' && (
+            <ProfileItem
+              username={user[0].data.name}
+              wins={
+                user[0].data.global_stats !== null
+                  ? user[0].data.global_stats?.solo.placetop1
+                  : '0'
+              }
+              games={
+                user[0].data.global_stats !== null
+                  ? user[0].data.global_stats.solo.matchesplayed
+                  : '0'
+              }
+              buttonStyle="success"
+              buttonText="Follow"
+              onClick={() => {
+                handleFriendClick(user[0].id);
+                setModal(true);
+                setInputValue('');
+                setUser('');
+              }}
+              link="#"
+              avatar={'../../src/assets/avatars/5.webp'}
+            />
+          )}
+        </section>
       </div>
     </>
   );
