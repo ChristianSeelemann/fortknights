@@ -1,23 +1,23 @@
 import useLocalStorage from './useLocalStorage';
 
 export default function useFriends(): {
-  friendsData: number[];
-  handleFriendClick: (id: number) => void;
+  friendsData: string[];
+  handleFriendClick: (id: string) => void;
 } {
-  const [friendsData, setFriendsData] = useLocalStorage<number[]>(
+  const [friendsData, setFriendsData] = useLocalStorage<string[]>(
     'friends',
     []
   );
 
-  function addFriend(id: number) {
+  function addFriend(id: string) {
     setFriendsData([...friendsData, id]);
   }
 
-  function removeFriend(id: number) {
+  function removeFriend(id: string) {
     setFriendsData(friendsData.filter((item) => item !== id));
   }
 
-  function handleFriendClick(id: number) {
+  function handleFriendClick(id: string) {
     if (friendsData.includes(id)) {
       removeFriend(id);
     } else {
