@@ -57,5 +57,5 @@ export default interface statsFromAPI {
       };
     };
   };
-  id: number;
+  id: string;
 }
