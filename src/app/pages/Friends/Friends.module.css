@@ -30,3 +30,53 @@
   font-size: 0.85rem;
   margin-top: 1rem;
 }
+
+.modal {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-white);
+  backdrop-filter: blur(0.35rem);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.modal_hidden {
+  display: none;
+}
+
+.modal__section {
+  padding: 6.25rem 1.5em 0 1.5rem;
+}
+
+.modal__span {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  line-height: 1.75rem;
+}
+
+.form {
+  padding-bottom: 2.5rem;
+}
+
+.form__input {
+  width: 100%;
+  outline: none;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--clr-lightblue);
+  color: var(--clr-white);
+  background: none;
+  font-size: 0.625rem;
+  padding: 0.625rem;
+}
+
+.form__input::placeholder {
+  color: var(--clr-lightblue);
+}
+
+.form__input:focus {
+  border-color: var(--clr-primary);
+}
