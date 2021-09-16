@@ -10,6 +10,8 @@ interface ProfileItemProps {
   wins: string | number;
   link: string;
   avatar: string;
+  buttonStyle: string;
+  buttonText: string;
   onClick?: () => void;
 }
 
@@ -19,6 +21,8 @@ export default function ProfileItem({
   wins,
   link,
   avatar,
+  buttonStyle,
+  buttonText,
   onClick,
 }: ProfileItemProps): JSX.Element {
   return (
@@ -35,7 +39,7 @@ export default function ProfileItem({
             </span>
           </div>
         </Link>
-        <Button text="Unfollow" style="warning" onClick={onClick} />
+        <Button text={buttonText} style={buttonStyle} onClick={onClick} />
       </div>
     </div>
   );
