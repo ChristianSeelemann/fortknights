@@ -39,7 +39,7 @@ app.get('/api/stats', async (request, response) => {
     const data = await res.json();
     const jointData = { data, id: queries };
 
-    response.json(jointData);
+    response.json([jointData]);
     return;
   }
 
