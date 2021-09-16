@@ -18,7 +18,7 @@ export default function Friends(): JSX.Element {
   const { friendsData, handleFriendClick } = useFriends();
   const jointFriends = friendsData.join('&id=');
 
-  const { data: friendList } = useFetch<statsFromAPI[]>(
+  const { data: friendList, isLoading } = useFetch<statsFromAPI[]>(
     `/api/stats/?id=${jointFriends}`
   );
 
@@ -92,7 +92,9 @@ export default function Friends(): JSX.Element {
                 />
               ))}
             {friendsData.length === 0 &&
+              isLoading === false &&
               'There is no Knight in your list :( Wanna add your first Knight?'}
+            {isLoading === true && 'Loading your Knights...'}
           </section>
           <div className={styles.news__toDo}>
             <ToTop color="var(--clr-white)" />
