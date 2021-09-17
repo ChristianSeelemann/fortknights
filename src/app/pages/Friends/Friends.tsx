@@ -142,63 +142,39 @@ export default function Friends(): JSX.Element {
               </span>
             )}
 
-            {result === true &&
-              user !== 'error' &&
-              user !== '' &&
-              Object.values(friendsData).includes(user[0].id) === false && (
-                <ProfileItem
-                  username={user[0].data.name}
-                  wins={
-                    user[0].data.global_stats !== null
-                      ? user[0].data.global_stats?.solo.placetop1
-                      : '0'
-                  }
-                  games={
-                    user[0].data.global_stats !== null
-                      ? user[0].data.global_stats.solo.matchesplayed
-                      : '0'
-                  }
-                  buttonStyle="success"
-                  buttonText="Follow"
-                  onClick={() => {
-                    handleFriendClick(user[0].id);
-                    setModal(true);
-                    setInputValue('');
-                    setUser('');
-                  }}
-                  link="#"
-                  avatar={'../../src/assets/avatars/5.webp'}
-                />
-              )}
-
-            {result === true &&
-              user !== 'error' &&
-              user !== '' &&
-              Object.values(friendsData).includes(user[0].id) === true && (
-                <ProfileItem
-                  username={user[0].data.name}
-                  wins={
-                    user[0].data.global_stats !== null
-                      ? user[0].data.global_stats?.solo.placetop1
-                      : '0'
-                  }
-                  games={
-                    user[0].data.global_stats !== null
-                      ? user[0].data.global_stats.solo.matchesplayed
-                      : '0'
-                  }
-                  buttonStyle="warning"
-                  buttonText="Unfollow"
-                  onClick={() => {
-                    handleFriendClick(user[0].id);
-                    setModal(true);
-                    setInputValue('');
-                    setUser('');
-                  }}
-                  link="#"
-                  avatar={'../../src/assets/avatars/5.webp'}
-                />
-              )}
+            {result === true && user !== 'error' && user !== '' && (
+              <ProfileItem
+                username={user[0].data.name}
+                wins={
+                  user[0].data.global_stats !== null
+                    ? user[0].data.global_stats?.solo.placetop1
+                    : '0'
+                }
+                games={
+                  user[0].data.global_stats !== null
+                    ? user[0].data.global_stats.solo.matchesplayed
+                    : '0'
+                }
+                buttonStyle={
+                  Object.values(friendsData).includes(user[0].id) === false
+                    ? 'success'
+                    : 'warning'
+                }
+                buttonText={
+                  Object.values(friendsData).includes(user[0].id) === false
+                    ? 'Follow'
+                    : 'Unfollow'
+                }
+                onClick={() => {
+                  handleFriendClick(user[0].id);
+                  setModal(true);
+                  setInputValue('');
+                  setUser('');
+                }}
+                link="#"
+                avatar={'../../src/assets/avatars/5.webp'}
+              />
+            )}
           </section>
         </div>
       )}
