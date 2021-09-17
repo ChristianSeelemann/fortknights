@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import Close from '../Icons/Close';
 import Fortnite from '../Icons/Fortnite';
 import Notification from '../Icons/Notification';
@@ -8,6 +7,7 @@ import styles from './Header.module.css';
 type HeaderProps = {
   textThin: string;
   textBold: string;
+  onClick?: () => void;
   icon: 'notification' | 'close' | 'fortnite' | JSX.Element;
 };
 
@@ -15,9 +15,8 @@ export default function Header({
   textThin,
   textBold,
   icon,
+  onClick,
 }: HeaderProps): JSX.Element {
-  const history = useHistory();
-
   return (
     <header className={styles.header}>
       <h1 className={styles.headline}>
@@ -33,7 +32,7 @@ export default function Header({
         )}
         {icon === 'fortnite' && <Fortnite color="var(--clr-white)" />}
         {icon === 'close' && (
-          <Close color="var(--clr-white)" onClick={() => history.goBack()} />
+          <Close color="var(--clr-white)" onClick={onClick} />
         )}
         {icon !== 'close' &&
           icon !== 'notification' &&
