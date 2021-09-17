@@ -10,7 +10,7 @@ import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
 
 export default function Friends(): JSX.Element {
-  const [modalClosed, setModal] = useState(true);
+  const [isModalOpen, setModal] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(false);
   const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
@@ -24,7 +24,7 @@ export default function Friends(): JSX.Element {
   );
 
   function modalClick() {
-    setModal(!modalClosed);
+    setModal(!isModalOpen);
   }
 
   async function handleSubmit(event: React.FormEvent) {
@@ -57,12 +57,12 @@ export default function Friends(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (modalClosed === false) {
+    if (isModalOpen === false) {
       document.body.style.overflow = 'hidden';
-    } else if (modalClosed === true) {
+    } else if (isModalOpen === true) {
       document.body.style.overflow = 'auto';
     }
-  }, [modalClosed]);
+  }, [isModalOpen]);
 
   return (
     <>
@@ -124,7 +124,7 @@ export default function Friends(): JSX.Element {
         </main>
         <Navigation active="friends" />
       </section>
-      {modalClosed === false && (
+      {isModalOpen === false && (
         <div className={styles.modal}>
           <Header
             textThin="Add"
