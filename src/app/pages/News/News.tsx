@@ -6,48 +6,43 @@ import ToTop from '../../components/Icons/ToTop';
 import Navigation from '../../components/Navigation/Navigation';
 import styles from './News.module.css';
 
-interface NewsMotd {
-  data: {
-    motds: [
-      {
-        id: string;
-        title: string;
-        body: string;
-        image: string;
-      }
-    ];
-  };
-}
-
-interface NewsStw {
-  data: {
-    messages: [
-      {
-        title: string;
-        body: string;
-        image: string;
-      }
-    ];
-  };
+interface newsFromAPI {
+  lang: string;
+  news: [
+    {
+      adspace: string;
+      body: string;
+      date: string;
+      id: string;
+      image: string;
+      live: boolean;
+      tabTitle: string;
+      title: string;
+      video: string | null;
+    }
+  ];
+  result: boolean;
+  show: number;
+  type: string;
 }
 
 export default function News(): JSX.Element {
   const [showToTop, setShowToTop] = useState(false);
 
-  const { data: battleRoyaleData } = useFetch<NewsMotd>(
-    'https://fortnite-api.com/v2/news/br'
-  );
-  const battleRoyaleNews = battleRoyaleData?.data.motds;
+  const { data: battleRoyaleData } =
+    useFetch<newsFromAPI>('/api/news/?mode=br');
+  const battleRoyaleNews = battleRoyaleData?.news;
+  console.log(battleRoyaleNews);
 
-  const { data: creativeData } = useFetch<NewsMotd>(
-    'https://fortnite-api.com/v2/news/creative'
+  const { data: creativeData } = useFetch<newsFromAPI>(
+    '/api/news/?mode=creative'
   );
-  const creativeNews = creativeData?.data.motds;
+  const creativeNews = creativeData?.news;
 
-  const { data: saveTheWorldData } = useFetch<NewsStw>(
-    'https://fortnite-api.com/v2/news/stw'
+  const { data: saveTheWorldData } = useFetch<newsFromAPI>(
+    '/api/news/?mode=stw'
   );
-  const saveTheWorldNews = saveTheWorldData?.data.messages;
+  const saveTheWorldNews = saveTheWorldData?.news;
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
