@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Card from '../../components/Card/Card';
 import Header from '../../components/Header/Header';
@@ -32,6 +32,8 @@ interface NewsStw {
 }
 
 export default function News(): JSX.Element {
+  const [showToTop, setShowToTop] = useState(false);
+
   const { data: battleRoyaleData } = useFetch<NewsMotd>(
     'https://fortnite-api.com/v2/news/br'
   );
@@ -46,6 +48,16 @@ export default function News(): JSX.Element {
     'https://fortnite-api.com/v2/news/stw'
   );
   const saveTheWorldNews = saveTheWorldData?.data.messages;
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 10) {
+        setShowToTop(true);
+      } else {
+        setShowToTop(false);
+      }
+    });
+  }, []);
 
   return (
     <section className={styles.news}>
@@ -83,14 +95,16 @@ export default function News(): JSX.Element {
             />
           ))}
         </section>
-        <div className={styles.news__toDo}>
-          <ToTop color="var(--clr-white)" />
-          <span>
-            This is everything :)
-            <br />
-            Come back later for new great stuff!
-          </span>
-        </div>
+        {showToTop === true && (
+          <div className={styles.news__toDo}>
+            <ToTop color="var(--clr-white)" />
+            <span>
+              This is everything :)
+              <br />
+              Come back later for new great stuff!
+            </span>
+          </div>
+        )}
       </main>
       <Navigation active="news" />
     </section>
