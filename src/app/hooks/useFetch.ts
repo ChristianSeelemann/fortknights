@@ -11,11 +11,7 @@ export default function useFetch<T>(url: string): {
   const isLoading = data === null;
 
   function refetch() {
-    fetch(url, {
-      headers: {
-        Authorization: 'e63f4351-b625ddac-254af606-5a2d8ef0',
-      },
-    })
+    fetch(url)
       .then((response) => response.json())
       .then((response) => setData(response))
       .catch((error) => setErrorMessage(error.toString()));
