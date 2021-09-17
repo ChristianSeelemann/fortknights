@@ -61,6 +61,20 @@ app.get('/api/stats', async (request, response) => {
   response.json(multipleData);
 });
 
+app.get('/api/news', async (request, response) => {
+  const queries = request.query.mode;
+  const user = await fetch(
+    `https://fortniteapi.io/v1/news?lang=en&type=${queries}`,
+    {
+      headers: {
+        Authorization: `${API_KEY}`,
+      },
+    }
+  );
+  const userData = await user.json();
+  response.json(userData);
+});
+
 app.get('/api', (_request, response) => {
   response.send('Hello API');
 });
