@@ -56,6 +56,14 @@ export default function Friends(): JSX.Element {
     });
   }, []);
 
+  useEffect(() => {
+    if (modalClosed === false) {
+      document.body.style.overflow = 'hidden';
+    } else if (modalClosed === true) {
+      document.body.style.overflow = 'auto';
+    }
+  }, [modalClosed]);
+
   return (
     <>
       <section className={styles.friends}>
@@ -117,7 +125,7 @@ export default function Friends(): JSX.Element {
         <Navigation active="friends" />
       </section>
       {modalClosed === false && (
-        <div id="modal" className={styles.modal}>
+        <div className={styles.modal}>
           <Header
             textThin="Add"
             textBold="Knight"
