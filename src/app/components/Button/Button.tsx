@@ -32,21 +32,23 @@ export default function Button({
 }: ButtonProps): JSX.Element {
   return (
     <button onClick={onClick} className={`${styles.button} ${styles[style]}`}>
-      <span className={styles.icon}>
-        {icon === 'Close' && <Close color="var(--clr-white)" />}
-        {icon === 'Fortnite' && <Fortnite color="var(--clr-white)" />}
-        {icon === 'Friends' && <Friends color="var(--clr-white)" />}
-        {icon === 'Items' && <Items color="var(--clr-white)" />}
-        {icon === 'Map' && <Map color="var(--clr-white)" />}
-        {icon === 'News' && <News color="var(--clr-white)" />}
-        {icon === 'Notification' && (
-          <Notification
-            activeColor="var(--clr-primary)"
-            color="var(--clr-white)"
-          />
-        )}
-        {icon === 'Stats' && <Stats color="var(--clr-white)" />}
-      </span>
+      {icon && (
+        <span className={styles.icon}>
+          {icon === 'Close' && <Close color="var(--clr-white)" />}
+          {icon === 'Fortnite' && <Fortnite color="var(--clr-white)" />}
+          {icon === 'Friends' && <Friends color="var(--clr-white)" />}
+          {icon === 'Items' && <Items color="var(--clr-white)" />}
+          {icon === 'Map' && <Map color="var(--clr-white)" />}
+          {icon === 'News' && <News color="var(--clr-white)" />}
+          {icon === 'Notification' && (
+            <Notification
+              activeColor="var(--clr-primary)"
+              color="var(--clr-white)"
+            />
+          )}
+          {icon === 'Stats' && <Stats color="var(--clr-white)" />}
+        </span>
+      )}
       {text}
     </button>
   );
