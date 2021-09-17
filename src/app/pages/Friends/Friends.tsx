@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
@@ -14,6 +14,7 @@ export default function Friends(): JSX.Element {
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(false);
   const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
+  const [showToTop, setShowToTop] = useState(false);
 
   const { friendsData, handleFriendClick } = useFriends();
   const jointFriends = friendsData.join('&id=');
@@ -40,9 +41,20 @@ export default function Friends(): JSX.Element {
 
     const userFetch = await fetch(`/api/stats/?id=${lookupData.account_id}`);
     const userData = await userFetch.json();
+
     setUser(userData);
     setResult(true);
   }
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 10) {
+        setShowToTop(true);
+      } else {
+        setShowToTop(false);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -85,19 +97,22 @@ export default function Friends(): JSX.Element {
                   key={user.id}
                 />
               ))}
+
             {friendsData.length === 0 &&
               isLoading === false &&
               'There is no Knight in your list :( Wanna add your first Knight?'}
             {isLoading === true && 'Loading your Knights...'}
           </section>
-          <div className={styles.news__toDo}>
-            <ToTop color="var(--clr-white)" />
-            <span>
-              This is everything :)
-              <br />
-              Come back later for new great stuff!
-            </span>
-          </div>
+          {showToTop === true && (
+            <div className={styles.news__toDo}>
+              <ToTop color="var(--clr-white)" />
+              <span>
+                This is everything :)
+                <br />
+                Come back later for new great stuff!
+              </span>
+            </div>
+          )}
         </main>
         <Navigation active="friends" />
       </section>
