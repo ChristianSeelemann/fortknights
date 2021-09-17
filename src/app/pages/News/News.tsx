@@ -32,7 +32,6 @@ export default function News(): JSX.Element {
   const { data: battleRoyaleData } =
     useFetch<newsFromAPI>('/api/news/?mode=br');
   const battleRoyaleNews = battleRoyaleData?.news;
-  console.log(battleRoyaleNews);
 
   const { data: creativeData } = useFetch<newsFromAPI>(
     '/api/news/?mode=creative'
