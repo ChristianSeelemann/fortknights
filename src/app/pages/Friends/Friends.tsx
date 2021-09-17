@@ -44,12 +44,6 @@ export default function Friends(): JSX.Element {
     setResult(true);
   }
 
-  const addFriendButton = document.querySelector('#modal');
-  modalClosed === false &&
-    addFriendButton?.classList.add(`${styles.modal_hidden}`);
-  modalClosed === true &&
-    addFriendButton?.classList.remove(`${styles.modal_hidden}`);
-
   return (
     <>
       <section className={styles.friends}>
@@ -107,57 +101,59 @@ export default function Friends(): JSX.Element {
         </main>
         <Navigation active="friends" />
       </section>
-      <div id="modal" className={styles.modal}>
-        <Header
-          textThin="Add"
-          textBold="Knight"
-          icon="close"
-          onClick={() => modalClick()}
-        />
-        <section className={styles.modal__section}>
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <input
-              className={styles.form__input}
-              type="text"
-              placeholder="Type in your Knights Name"
-              value={inputValue}
-              onChange={(event) => setInputValue(event.target.value)}
-            />
-          </form>
-          {user === 'error' && (
-            <span className={styles.modal__span}>
-              There is no Knight with this Name... :(
-              <br />
-              Maybe try another one :)
-            </span>
-          )}
-          {result === true && user !== 'error' && user !== '' && (
-            <ProfileItem
-              username={user[0].data.name}
-              wins={
-                user[0].data.global_stats !== null
-                  ? user[0].data.global_stats?.solo.placetop1
-                  : '0'
-              }
-              games={
-                user[0].data.global_stats !== null
-                  ? user[0].data.global_stats.solo.matchesplayed
-                  : '0'
-              }
-              buttonStyle="success"
-              buttonText="Follow"
-              onClick={() => {
-                handleFriendClick(user[0].id);
-                setModal(true);
-                setInputValue('');
-                setUser('');
-              }}
-              link="#"
-              avatar={'../../src/assets/avatars/5.webp'}
-            />
-          )}
-        </section>
-      </div>
+      {modalClosed === false && (
+        <div id="modal" className={styles.modal}>
+          <Header
+            textThin="Add"
+            textBold="Knight"
+            icon="close"
+            onClick={() => modalClick()}
+          />
+          <section className={styles.modal__section}>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+                className={styles.form__input}
+                type="text"
+                placeholder="Type in your Knights Name"
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
+              />
+            </form>
+            {user === 'error' && (
+              <span className={styles.modal__span}>
+                There is no Knight with this Name... :(
+                <br />
+                Maybe try another one :)
+              </span>
+            )}
+            {result === true && user !== 'error' && user !== '' && (
+              <ProfileItem
+                username={user[0].data.name}
+                wins={
+                  user[0].data.global_stats !== null
+                    ? user[0].data.global_stats?.solo.placetop1
+                    : '0'
+                }
+                games={
+                  user[0].data.global_stats !== null
+                    ? user[0].data.global_stats.solo.matchesplayed
+                    : '0'
+                }
+                buttonStyle="success"
+                buttonText="Follow"
+                onClick={() => {
+                  handleFriendClick(user[0].id);
+                  setModal(true);
+                  setInputValue('');
+                  setUser('');
+                }}
+                link="#"
+                avatar={'../../src/assets/avatars/5.webp'}
+              />
+            )}
+          </section>
+        </div>
+      )}
     </>
   );
 }
