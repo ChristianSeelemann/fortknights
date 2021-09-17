@@ -7,6 +7,9 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
+app.disable('x-powered-by');
+
+app.use('/storybook', express.static('dist/storybook'));
 
 app.get('/api/lookup/:id', async (request, response) => {
   const { id } = request.params;
@@ -61,8 +64,11 @@ app.get('/api', (_request, response) => {
   response.send('Hello API');
 });
 
-app.use('/storybook', express.static('dist/storybook'));
 app.use(express.static('dist/app'));
+
+app.get('*', (_request, response) => {
+  response.sendFile('index.html', { root: 'dist/app' });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
