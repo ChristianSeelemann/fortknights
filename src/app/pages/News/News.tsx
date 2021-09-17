@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
 import Navigation from '../../components/Navigation/Navigation';
 import styles from './News.module.css';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 interface newsFromAPI {
   lang: string;
@@ -29,18 +30,16 @@ interface newsFromAPI {
 export default function News(): JSX.Element {
   const [showToTop, setShowToTop] = useState(false);
 
-  const { data: battleRoyaleData } =
+  const { data: battleRoyaleData, isLoading: battleRoyaleLoading } =
     useFetch<newsFromAPI>('/api/news/?mode=br');
   const battleRoyaleNews = battleRoyaleData?.news;
 
-  const { data: creativeData } = useFetch<newsFromAPI>(
-    '/api/news/?mode=creative'
-  );
+  const { data: creativeData, isLoading: creativeLoading } =
+    useFetch<newsFromAPI>('/api/news/?mode=creative');
   const creativeNews = creativeData?.news;
 
-  const { data: saveTheWorldData } = useFetch<newsFromAPI>(
-    '/api/news/?mode=stw'
-  );
+  const { data: saveTheWorldData, isLoading: saveTheWorldLoading } =
+    useFetch<newsFromAPI>('/api/news/?mode=stw');
   const saveTheWorldNews = saveTheWorldData?.news;
 
   useEffect(() => {
@@ -54,53 +53,60 @@ export default function News(): JSX.Element {
   }, []);
 
   return (
-    <section className={styles.news}>
-      <Header textThin="Fort" textBold="Knights" icon="fortnite" />
-      <main>
-        <h2>Battle Royale</h2>
-        <section className={styles.news__itemGroup}>
-          {battleRoyaleNews?.map((item) => (
-            <Card
-              key={item.id}
-              title={item.body}
-              image={item.image}
-              date={item.title}
-              gamemode="br"
-            />
-          ))}
-          <h2 className={styles.news__h2}>Save the World</h2>
-          {saveTheWorldNews?.map((item) => (
-            <Card
-              key={item.title}
-              title={item.body}
-              image={item.image}
-              date={item.title}
-              gamemode="stw"
-            />
-          ))}
-          <h2 className={styles.news__h2}>Creative</h2>
-          {creativeNews?.map((item) => (
-            <Card
-              key={item.id}
-              title={item.body}
-              image={item.image}
-              date={item.title}
-              gamemode="creative"
-            />
-          ))}
-        </section>
-        {showToTop === true && (
-          <div className={styles.news__toDo}>
-            <ToTop color="var(--clr-white)" />
-            <span>
-              This is everything :)
-              <br />
-              Come back later for new great stuff!
-            </span>
-          </div>
-        )}
-      </main>
-      <Navigation active="news" />
-    </section>
+    <>
+      <section className={styles.news}>
+        <Header textThin="Fort" textBold="Knights" icon="fortnite" />
+        <main>
+          <section className={styles.news__itemGroup}>
+            <h2 className={styles.news__h2_first}>Battle Royale</h2>
+            {battleRoyaleNews?.map((item) => (
+              <Card
+                key={item.id}
+                title={item.body}
+                image={item.image}
+                date={item.title}
+                gamemode="br"
+              />
+            ))}
+            <h2 className={styles.news__h2}>Save the World</h2>
+            {saveTheWorldNews?.map((item) => (
+              <Card
+                key={item.title}
+                title={item.body}
+                image={item.image}
+                date={item.title}
+                gamemode="stw"
+              />
+            ))}
+            <h2 className={styles.news__h2}>Creative</h2>
+            {creativeNews?.map((item) => (
+              <Card
+                key={item.id}
+                title={item.body}
+                image={item.image}
+                date={item.title}
+                gamemode="creative"
+              />
+            ))}
+          </section>
+          {showToTop === true && (
+            <div className={styles.news__toDo}>
+              <ToTop color="var(--clr-white)" />
+              <span>
+                This is everything :)
+                <br />
+                Come back later for new great stuff!
+              </span>
+            </div>
+          )}
+        </main>
+        <Navigation active="news" />
+      </section>
+      {battleRoyaleLoading || saveTheWorldLoading || creativeLoading ? (
+        <LoadingSpinner />
+      ) : (
+        ''
+      )}
+    </>
   );
 }

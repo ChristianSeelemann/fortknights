@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Navigation from '../../components/Navigation/Navigation';
 import ProfileItem from '../../components/Profile/ProfileItem';
 import useFetch from '../../hooks/useFetch';
@@ -186,6 +187,7 @@ export default function Friends(): JSX.Element {
           </section>
         </div>
       )}
+      {isLoading && <LoadingSpinner />}
     </>
   );
 }
