@@ -8,39 +8,30 @@ import styles from './News.module.css';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 interface newsFromAPI {
-  lang: string;
-  news: [
-    {
-      adspace: string;
-      body: string;
-      date: string;
-      id: string;
-      image: string;
-      live: boolean;
-      tabTitle: string;
-      title: string;
-      video: string | null;
-    }
-  ];
-  result: boolean;
-  show: number;
-  type: string;
+  adspace: string;
+  body: string;
+  date: string;
+  id: string;
+  image: string;
+  live: boolean;
+  tabTitle: string;
+  title: string;
+  video: string | null;
 }
 
 export default function News(): JSX.Element {
   const [showToTop, setShowToTop] = useState(false);
 
-  const { data: battleRoyaleData, isLoading: battleRoyaleLoading } =
-    useFetch<newsFromAPI>('/api/news/?mode=br');
-  const battleRoyaleNews = battleRoyaleData?.news;
+  const { data: battleRoyaleNews, isLoading: battleRoyaleLoading } =
+    useFetch<newsFromAPI[]>('/api/news/?mode=br');
 
-  const { data: creativeData, isLoading: creativeLoading } =
-    useFetch<newsFromAPI>('/api/news/?mode=creative');
-  const creativeNews = creativeData?.news;
+  const { data: creativeNews, isLoading: creativeLoading } = useFetch<
+    newsFromAPI[]
+  >('/api/news/?mode=creative');
 
-  const { data: saveTheWorldData, isLoading: saveTheWorldLoading } =
-    useFetch<newsFromAPI>('/api/news/?mode=stw');
-  const saveTheWorldNews = saveTheWorldData?.news;
+  const { data: saveTheWorldNews, isLoading: saveTheWorldLoading } = useFetch<
+    newsFromAPI[]
+  >('/api/news/?mode=stw');
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -69,15 +60,16 @@ export default function News(): JSX.Element {
               />
             ))}
             <h2 className={styles.news__h2}>Save the World</h2>
-            {saveTheWorldNews?.map((item) => (
-              <Card
-                key={item.title}
-                title={item.body}
-                image={item.image}
-                date={item.title}
-                gamemode="stw"
-              />
-            ))}
+            {saveTheWorldNews &&
+              saveTheWorldNews.map((item) => (
+                <Card
+                  key={item.title}
+                  title={item.body}
+                  image={item.image}
+                  date={item.title}
+                  gamemode="stw"
+                />
+              ))}
             <h2 className={styles.news__h2}>Creative</h2>
             {creativeNews?.map((item) => (
               <Card
@@ -102,10 +94,8 @@ export default function News(): JSX.Element {
         </main>
         <Navigation active="news" />
       </section>
-      {battleRoyaleLoading || saveTheWorldLoading || creativeLoading ? (
+      {(battleRoyaleLoading || saveTheWorldLoading || creativeLoading) && (
         <LoadingSpinner />
-      ) : (
-        ''
       )}
     </>
   );
