@@ -63,7 +63,7 @@ app.get('/api/stats', async (request, response) => {
 
 app.get('/api/news', async (request, response) => {
   const queries = request.query.mode;
-  const user = await fetch(
+  const newsFetch = await fetch(
     `https://fortniteapi.io/v1/news?lang=en&type=${queries}`,
     {
       headers: {
@@ -71,8 +71,9 @@ app.get('/api/news', async (request, response) => {
       },
     }
   );
-  const userData = await user.json();
-  response.json(userData);
+  const newsData = await newsFetch.json();
+  const news = newsData.news;
+  response.json(news);
 });
 
 app.get('/api', (_request, response) => {
