@@ -76,6 +76,17 @@ app.get('/api/news', async (request, response) => {
   response.json(news);
 });
 
+app.get('/api/map', async (_request, response) => {
+  const mapFetch = await fetch('https://fortniteapi.io/v2/game/poi?lang=en', {
+    headers: {
+      Authorization: `${API_KEY}`,
+    },
+  });
+  const mapData = await mapFetch.json();
+  const map = mapData.list;
+  response.send(map);
+});
+
 app.get('/api', (_request, response) => {
   response.send('Hello API');
 });
