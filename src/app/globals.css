@@ -24,6 +24,7 @@ body::-webkit-scrollbar {
 :root {
   --clr-white: #f0eeff;
   --clr-bg-dark: rgba(3, 16, 28, 0.8);
+  --clr-bg-dark-60: rgba(3, 16, 28, 0.6);
   --clr-primary: rgba(88, 135, 255, 1);
   --clr-secondary: rgba(166, 130, 255, 1);
   --clr-accent: rgba(113, 90, 255, 1);
