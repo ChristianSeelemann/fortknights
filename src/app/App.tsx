@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Friends from './pages/Friends/Friends';
+import Map from './pages/Map/Map';
 import News from './pages/News/News';
 
 function App(): JSX.Element {
@@ -12,6 +13,9 @@ function App(): JSX.Element {
         </Route>
         <Route path="/friends">
           <Friends />
+        </Route>
+        <Route path="/map">
+          <Map />
         </Route>
         <Route path="/">
           <News />

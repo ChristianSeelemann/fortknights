@@ -3,13 +3,20 @@ import React from 'react';
 type CloseProps = {
   color: string;
   onClick?: () => void;
+  height?: string;
+  width?: string;
 };
 
-export default function Close({ color, onClick }: CloseProps): JSX.Element {
+export default function Close({
+  color,
+  onClick,
+  height,
+  width,
+}: CloseProps): JSX.Element {
   return (
     <svg
-      width="17"
-      height="16"
+      width={width ? width : '17'}
+      height={height ? height : '16'}
       viewBox="0 0 17 16"
       fill={color}
       xmlns="http://www.w3.org/2000/svg"
