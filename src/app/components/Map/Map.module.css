@@ -21,6 +21,7 @@
 
 .pois {
   position: absolute;
+  background: var(--clr-bg-dark-60);
   width: 2048px;
   height: 2048px;
   top: 0;
@@ -28,6 +29,7 @@
   bottom: 0;
   right: 0;
   z-index: 1;
+  backdrop-filter: saturate(150%);
 }
 
 .pois__ul {
@@ -38,39 +40,59 @@
   position: absolute;
   z-index: 2;
   list-style: none;
-  height: 1rem;
-  width: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
   background: var(--clr-secondary);
   border-radius: 50%;
   border: 0.1875rem solid var(--clr-white);
-}
-
-.pois__item > div {
-  display: none;
-  white-space: nowrap;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 }
 
 .pois__item.active > div {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 }
 
 .pois__item_info {
   border-radius: 0.5rem;
   background: var(--clr-secondary);
   color: var(--clr-white);
-  padding: 0.4rem 0.625rem 0.5rem 0.625rem;
+  padding: 0.6rem 0.625rem 0.5rem 0.625rem;
   border: 0.1875rem solid var(--clr-white);
   position: relative;
-  left: 0.4rem;
-  top: 0.4rem;
-  font-size: 0.625rem;
+  top: 0.8rem;
+  left: 0.8rem;
+  font-size: 1rem;
   text-transform: uppercase;
   font-weight: 800;
   box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  display: none;
+  white-space: nowrap;
 }
 
-.pois__item_info svg {
-  position: relative;
-  top: 0.15rem;
-  margin-left: 0.5rem;
+.pois__item_name {
+  display: flex;
+  padding-bottom: 0.75rem;
+}
+
+.pois__item_name svg {
+  margin-left: 1rem;
+  margin-top: 0.225rem;
+}
+
+.pois__item_image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.15);
+}
+
+.tags {
+  position: absolute;
+  top: 6.25rem;
+  left: 1.5rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.625rem;
 }
