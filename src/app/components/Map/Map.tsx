@@ -1,15 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Close from '../Icons/Close';
+import Tag from '../Tag/Tag';
 import styles from './Map.module.css';
 
 interface mapPOISFromAPI {
   name: string;
   x: number;
   y: number;
+  images: [
+    {
+      url: string;
+    }
+  ];
 }
 
 export default function mapComponent(): JSX.Element {
+  const [togglePOIs, setTogglePOIs] = useState(true);
+
   const { data: mapData } = useFetch<mapPOISFromAPI[]>('api/map');
 
   function handlePOIClick(event: React.MouseEvent) {
@@ -23,10 +31,18 @@ export default function mapComponent(): JSX.Element {
   function handlePOIClose(event: React.MouseEvent) {
     if ((event.target as Element).localName === 'div') {
       (event.target as Element).parentElement?.classList.remove(styles.active);
-    } else {
+    } else if (
+      (event.target as Element).classList.contains(styles.pois__item_image)
+    ) {
       (
         event.target as Element
       ).parentElement?.parentElement?.parentElement?.classList.remove(
+        styles.active
+      );
+    } else if ((event.target as Element).localName === 'path') {
+      (
+        event.target as Element
+      ).parentElement?.parentElement?.parentElement?.parentElement?.classList.remove(
         styles.active
       );
     }
@@ -48,27 +64,54 @@ export default function mapComponent(): JSX.Element {
           src="https://media.fortniteapi.io/images/map.png"
           alt="Image of the Fortnite Map"
         />
-        <div className={styles.pois}>
-          <ul className={styles.pois__ul}>
-            {mapData &&
-              mapData.map((poi) => (
-                <li
-                  onClick={(event) => handlePOIClick(event)}
-                  className={`${styles.pois__item}`}
-                  key={poi.name}
-                  style={{ left: poi.x, top: poi.y }}
-                >
-                  <div
-                    onClick={(event) => handlePOIClose(event)}
-                    className={styles.pois__item_info}
+        {togglePOIs === true && (
+          <div className={styles.pois}>
+            <ul className={styles.pois__ul}>
+              {mapData &&
+                mapData.map((poi) => (
+                  <li
+                    onClick={(event) => handlePOIClick(event)}
+                    className={`${styles.pois__item}`}
+                    key={poi.name}
+                    style={{ left: poi.x, top: poi.y }}
                   >
-                    {poi.name}
-                    <Close height="13" width="13" color="var(--clr-white)" />
-                  </div>
-                </li>
-              ))}
-          </ul>
-        </div>
+                    <div
+                      onClick={(event) => handlePOIClose(event)}
+                      className={styles.pois__item_info}
+                    >
+                      <div className={styles.pois__item_name}>
+                        {poi.name}
+                        <Close
+                          height="13"
+                          width="13"
+                          color="var(--clr-white)"
+                        />
+                      </div>
+                      <span>
+                        <img
+                          className={styles.pois__item_image}
+                          src={poi.images[0].url}
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className={styles.tags}>
+        <Tag
+          style="savetheworld"
+          text="PURE MAP"
+          onClick={() => setTogglePOIs(false)}
+        />
+        <Tag
+          style="battleroyale"
+          text="HOTSPOTS"
+          onClick={() => setTogglePOIs(true)}
+        />
       </div>
     </section>
   );
