@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './cosmetic.module.css';
+import styles from './Cosmetic.module.css';
 
 interface cosmeticProps {
   name: string;
