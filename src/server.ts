@@ -76,6 +76,17 @@ app.get('/api/news', async (request, response) => {
   response.json(news);
 });
 
+app.get('/api/items', async (_request, response) => {
+  const itemsFetch = await fetch('https://fortniteapi.io/v2/shop?lang=en', {
+    headers: {
+      Authorization: `${API_KEY}`,
+    },
+  });
+  const itemsData = await itemsFetch.json();
+  const items = itemsData.shop;
+  response.json(items);
+});
+
 app.get('/api', (_request, response) => {
   response.send('Hello API');
 });
