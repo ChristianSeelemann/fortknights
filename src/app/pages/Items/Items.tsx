@@ -51,7 +51,7 @@ export default function Items(): JSX.Element {
             </span>
           </div>
           <section className={styles.items__group}>
-            {isLoading === false &&
+            {!isLoading &&
               data &&
               data.map((item) => (
                 <Cosmetic
@@ -63,7 +63,7 @@ export default function Items(): JSX.Element {
                 />
               ))}
           </section>
-          {showToTop === true && (
+          {showToTop && (
             <div className={styles.news__toDo}>
               <ToTop color="var(--clr-white)" />
               <span>
