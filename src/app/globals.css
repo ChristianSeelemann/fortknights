@@ -58,6 +58,51 @@ body::-webkit-scrollbar {
   );
 }
 
+.epic {
+  background: rgb(144, 27, 198);
+  background: linear-gradient(
+    135deg,
+    rgba(144, 27, 198, 1) 0%,
+    rgba(187, 72, 240, 1) 100%
+  );
+}
+
+.rare {
+  background: rgb(17, 95, 218);
+  background: linear-gradient(
+    135deg,
+    rgba(17, 95, 218, 1) 0%,
+    rgba(74, 144, 255, 1) 100%
+  );
+}
+
+.legendary {
+  background: rgb(205, 93, 12);
+  background: linear-gradient(
+    135deg,
+    rgba(205, 93, 12, 1) 0%,
+    rgba(255, 137, 52, 1) 100%
+  );
+}
+
+.uncommon {
+  background: rgb(47, 207, 18);
+  background: linear-gradient(
+    135deg,
+    rgba(47, 207, 18, 1) 0%,
+    rgba(78, 255, 46, 1) 100%
+  );
+}
+
+.common {
+  background: rgb(195, 192, 190);
+  background: linear-gradient(
+    135deg,
+    rgba(195, 192, 190, 1) 0%,
+    rgba(242, 235, 230, 1) 100%
+  );
+}
+
 a {
   color: var(--clr-white);
   text-decoration: none;
