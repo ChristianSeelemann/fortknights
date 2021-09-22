@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Close from '../Icons/Close';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
 import styles from './Map.module.css';
 
@@ -18,7 +19,7 @@ interface mapPOISFromAPI {
 export default function mapComponent(): JSX.Element {
   const [togglePOIs, setTogglePOIs] = useState(true);
 
-  const { data: mapData } = useFetch<mapPOISFromAPI[]>('api/map');
+  const { data: mapData, isLoading } = useFetch<mapPOISFromAPI[]>('api/map');
 
   function handlePOIClick(event: React.MouseEvent) {
     if ((event.target as Element).classList.contains(styles.active)) {
@@ -57,62 +58,65 @@ export default function mapComponent(): JSX.Element {
   }, []);
 
   return (
-    <section className={styles.map__wrapper}>
-      <div id="scrollMap" className={styles.map__image_wrapper}>
-        <img
-          className={styles.map__image}
-          src="https://media.fortniteapi.io/images/map.png"
-          alt="Image of the Fortnite Map"
-        />
-        {togglePOIs === true && (
-          <div className={styles.pois}>
-            <ul className={styles.pois__ul}>
-              {mapData &&
-                mapData.map((poi) => (
-                  <li
-                    onClick={(event) => handlePOIClick(event)}
-                    className={`${styles.pois__item}`}
-                    key={poi.name}
-                    style={{ left: poi.x, top: poi.y }}
-                  >
-                    <div
-                      onClick={(event) => handlePOIClose(event)}
-                      className={styles.pois__item_info}
+    <>
+      <section className={styles.map__wrapper}>
+        <div id="scrollMap" className={styles.map__image_wrapper}>
+          <img
+            className={styles.map__image}
+            src="https://media.fortniteapi.io/images/map.png"
+            alt="Image of the Fortnite Map"
+          />
+          {togglePOIs === true && (
+            <div className={styles.pois}>
+              <ul className={styles.pois__ul}>
+                {mapData &&
+                  mapData.map((poi) => (
+                    <li
+                      onClick={(event) => handlePOIClick(event)}
+                      className={`${styles.pois__item}`}
+                      key={poi.name}
+                      style={{ left: poi.x, top: poi.y }}
                     >
-                      <div className={styles.pois__item_name}>
-                        {poi.name}
-                        <Close
-                          height="13"
-                          width="13"
-                          color="var(--clr-white)"
-                        />
+                      <div
+                        onClick={(event) => handlePOIClose(event)}
+                        className={styles.pois__item_info}
+                      >
+                        <div className={styles.pois__item_name}>
+                          {poi.name}
+                          <Close
+                            height="13"
+                            width="13"
+                            color="var(--clr-white)"
+                          />
+                        </div>
+                        <span>
+                          <img
+                            className={styles.pois__item_image}
+                            src={poi.images[0].url}
+                            alt=""
+                          />
+                        </span>
                       </div>
-                      <span>
-                        <img
-                          className={styles.pois__item_image}
-                          src={poi.images[0].url}
-                          alt=""
-                        />
-                      </span>
-                    </div>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <div className={styles.tags}>
-        <Tag
-          style="savetheworld"
-          text="PURE MAP"
-          onClick={() => setTogglePOIs(false)}
-        />
-        <Tag
-          style="battleroyale"
-          text="HOTSPOTS"
-          onClick={() => setTogglePOIs(true)}
-        />
-      </div>
-    </section>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className={styles.tags}>
+          <Tag
+            style="savetheworld"
+            text="PURE MAP"
+            onClick={() => setTogglePOIs(false)}
+          />
+          <Tag
+            style="battleroyale"
+            text="HOTSPOTS"
+            onClick={() => setTogglePOIs(true)}
+          />
+        </div>
+      </section>
+      {isLoading && <LoadingSpinner />}
+    </>
   );
 }
