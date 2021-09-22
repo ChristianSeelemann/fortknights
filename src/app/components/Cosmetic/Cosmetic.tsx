@@ -16,7 +16,7 @@ export default function Cosmetic({
 }: cosmeticProps): JSX.Element {
   return (
     <div className={`${styles.cosmetic} ${rarity.toLowerCase()}`}>
-      <img src={image} alt="Item Image" />
+      <img src={image} alt="Item" />
       <div className={styles.cosmetic__info}>
         {name.substr(0, 6)}
         {name.length > 6 && '...'}
