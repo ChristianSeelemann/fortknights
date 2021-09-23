@@ -1,6 +1,6 @@
 import useLocalStorage from './useLocalStorage';
 
-export default function useSelf(): {
+export default function useUser(): {
   selfData: string;
   addSelf: (id: string) => void;
   removeSelf: (name: string) => void;

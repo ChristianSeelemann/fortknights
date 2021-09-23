@@ -7,12 +7,12 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Navigation from '../../components/Navigation/Navigation';
 import ProfileItem from '../../components/Profile/ProfileItem';
 import useFetch from '../../hooks/useFetch';
-import useSelf from '../../hooks/useSelf';
+import useUser from '../../hooks/useUser';
 import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Stats.module.css';
 
 export default function Stats(): JSX.Element {
-  const { selfData, addSelf, removeSelf } = useSelf();
+  const { selfData, addSelf, removeSelf } = useUser();
   const [isDataSet, setIsDataSet] = useState(selfData !== '0');
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(false);
