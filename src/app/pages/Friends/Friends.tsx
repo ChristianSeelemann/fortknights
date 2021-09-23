@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import useUser from '../../hooks/useUser';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
+import Close from '../../components/Icons/Close';
 import ToTop from '../../components/Icons/ToTop';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Navigation from '../../components/Navigation/Navigation';
@@ -11,11 +14,14 @@ import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Friends.module.css';
 
 export default function Friends(): JSX.Element {
-  const [isModalOpen, setModal] = useState(true);
+  const { selfData } = useUser();
+  const [isModalOpen, setModal] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(false);
   const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
   const [showToTop, setShowToTop] = useState(false);
+
+  const history = useHistory();
 
   const { friendsData, handleFriendClick } = useFriends();
   const jointFriends = friendsData.join('&id=');
@@ -47,6 +53,10 @@ export default function Friends(): JSX.Element {
     setResult(true);
   }
 
+  function handleCompareClick() {
+    console.log('compare');
+  }
+
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 10) {
@@ -58,9 +68,9 @@ export default function Friends(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (isModalOpen === false) {
+    if (isModalOpen === true) {
       document.body.style.overflow = 'hidden';
-    } else if (isModalOpen === true) {
+    } else if (isModalOpen === false) {
       document.body.style.overflow = 'auto';
     }
   }, [isModalOpen]);
@@ -87,22 +97,28 @@ export default function Friends(): JSX.Element {
               friendsData.length !== 0 &&
               friendList.map((user, index) => (
                 <ProfileItem
-                  username={user.data.name}
+                  username={user.data.name.substr(0, 10)}
                   games={
                     user.data.global_stats && user.data.global_stats !== null
                       ? user.data.global_stats.solo.matchesplayed
                       : '0'
                   }
-                  wins={
-                    user.data.global_stats && user.data.global_stats !== null
-                      ? user.data.global_stats.solo.placetop1
-                      : '0'
-                  }
-                  link="#"
                   avatar={`/avatars/${index}.webp`}
-                  buttonText="Unfollow"
+                  buttonText={
+                    <Close
+                      color="var(--clr-white)"
+                      height="0.75rem"
+                      width="0.75rem"
+                    />
+                  }
                   buttonStyle="warning"
                   onClick={() => handleFriendClick(user.id)}
+                  compare={selfData !== '0'}
+                  stats={true}
+                  onClickStats={() => {
+                    history.push(`/friendstats/${user.id}`);
+                  }}
+                  onClickCompare={() => handleCompareClick()}
                   key={user.id}
                 />
               ))}
@@ -125,7 +141,7 @@ export default function Friends(): JSX.Element {
         </main>
         <Navigation active="friends" />
       </section>
-      {isModalOpen === false && (
+      {isModalOpen === true && (
         <div className={styles.modal}>
           <Header
             textThin="Add"
@@ -154,11 +170,6 @@ export default function Friends(): JSX.Element {
             {result === true && user !== 'error' && user !== '' && (
               <ProfileItem
                 username={user[0].data.name}
-                wins={
-                  user[0].data.global_stats !== null
-                    ? user[0].data.global_stats?.solo.placetop1
-                    : '0'
-                }
                 games={
                   user[0].data.global_stats !== null
                     ? user[0].data.global_stats.solo.matchesplayed
@@ -180,7 +191,6 @@ export default function Friends(): JSX.Element {
                   setInputValue('');
                   setUser('');
                 }}
-                link="#"
                 avatar={'/avatars/5.webp'}
               />
             )}
