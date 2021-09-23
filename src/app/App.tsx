@@ -4,6 +4,7 @@ import Friends from './pages/Friends/Friends';
 import Items from './pages/Items/Items';
 import Map from './pages/Map/Map';
 import News from './pages/News/News';
+import Stats from './pages/Stats/Stats';
 
 function App(): JSX.Element {
   return (
@@ -14,6 +15,9 @@ function App(): JSX.Element {
         </Route>
         <Route path="/items">
           <Items />
+        </Route>
+        <Route path="/stats">
+          <Stats />
         </Route>
         <Route path="/friends">
           <Friends />

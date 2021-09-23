@@ -1,0 +1,125 @@
+.stats {
+  padding: 6.25rem 0 0 0;
+  background: url('../../../assets/bg_1.webp'), var(--clr-bg-dark);
+  background-blend-mode: saturation;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.stats__none {
+  color: var(--clr-white);
+  padding: 1.5rem 1.5rem 0;
+  display: inline-block;
+}
+
+.stats__item {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats__item span {
+  font-size: 1.5rem;
+}
+
+.stats__overall,
+.stats__solo,
+.stats__duo,
+.stats__squad {
+  margin: 1.5rem;
+  background-color: var(--clr-bg-dark);
+}
+
+.stats__squad {
+  margin-bottom: 6.5rem;
+}
+
+.stats__itemGroup {
+  color: var(--clr-white);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.stats__head {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1.5rem;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.stats h2,
+.stats h3 {
+  padding-left: 1.5rem;
+}
+
+.stats h3 {
+  padding: 1rem 0.75rem 0.7rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.modal {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-white);
+  backdrop-filter: blur(0.35rem);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.modal__section {
+  padding: 6.25rem 1.5em 0 1.5rem;
+}
+
+.modal__span {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  line-height: 1.75rem;
+}
+
+.form {
+  padding-bottom: 2.5rem;
+}
+
+.form__input {
+  width: 100%;
+  outline: none;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--clr-lightblue);
+  color: var(--clr-white);
+  background: none;
+  font-size: 0.625rem;
+  padding: 0.625rem;
+}
+
+.form__input::placeholder {
+  color: var(--clr-lightblue);
+}
+
+.form__input:focus {
+  border-color: var(--clr-primary);
+}
+
+.news__toDo {
+  text-align: center;
+  padding: 0 0 8rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -3rem;
+}
+
+.news__toDo span {
+  color: var(--clr-white);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
