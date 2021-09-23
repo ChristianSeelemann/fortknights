@@ -371,7 +371,7 @@ export default function Stats(): JSX.Element {
             {user !== 'error' && result && user !== '' && (
               <ProfileItem
                 username={user[0].data.name}
-                avatar={'../../src/assets/avatars/5.webp'}
+                avatar={'/avatars/5.webp'}
                 wins={
                   user[0].data.global_stats !== null
                     ? user[0].data.global_stats?.solo.placetop1
