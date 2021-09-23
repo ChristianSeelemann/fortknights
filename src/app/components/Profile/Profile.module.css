@@ -11,7 +11,7 @@
 .profileItem {
   display: flex;
   align-items: center;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.65rem;
 }
 
 .profileItem__notPicture {
@@ -23,13 +23,26 @@
 
 .profileItem button {
   justify-content: flex-end;
+  padding: 0.7rem 0.8rem;
+}
+
+.profileItem__buttonGroup {
+  display: flex;
+  gap: 0.35rem;
 }
 
 .profileItem__info {
   display: flex;
   flex-direction: column;
-  font-size: 0.8125rem;
+  font-size: 0.95rem;
   padding-left: 0.75rem;
+  color: var(--clr-white);
+}
+
+@media (max-width: 330px) {
+  .profileItem__info {
+    font-size: 0.75rem;
+  }
 }
 
 .profileItem__info span {
