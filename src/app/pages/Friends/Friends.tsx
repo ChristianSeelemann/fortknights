@@ -99,7 +99,7 @@ export default function Friends(): JSX.Element {
                       : '0'
                   }
                   link="#"
-                  avatar={`../../src/assets/avatars/${index}.webp`}
+                  avatar={`/avatars/${index}.webp`}
                   buttonText="Unfollow"
                   buttonStyle="warning"
                   onClick={() => handleFriendClick(user.id)}
@@ -181,7 +181,7 @@ export default function Friends(): JSX.Element {
                   setUser('');
                 }}
                 link="#"
-                avatar={'../../src/assets/avatars/5.webp'}
+                avatar={'/avatars/5.webp'}
               />
             )}
           </section>
