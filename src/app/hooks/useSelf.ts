@@ -3,6 +3,7 @@ import useLocalStorage from './useLocalStorage';
 export default function useSelf(): {
   selfData: string;
   addSelf: (id: string) => void;
+  removeSelf: (name: string) => void;
 } {
   const [selfData, setSelfData] = useLocalStorage<string>('nickname', '0');
 
@@ -10,5 +11,9 @@ export default function useSelf(): {
     setSelfData(id);
   }
 
-  return { selfData, addSelf };
+  function removeSelf(name: string) {
+    localStorage.removeItem(name);
+  }
+
+  return { selfData, addSelf, removeSelf };
 }
