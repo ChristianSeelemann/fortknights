@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
@@ -11,11 +12,13 @@ import type statsFromAPI from '../../types/statsFromAPI';
 import styles from './Stats.module.css';
 
 export default function Stats(): JSX.Element {
-  const { selfData, addSelf } = useSelf();
+  const { selfData, addSelf, removeSelf } = useSelf();
+  const [isDataSet, setIsDataSet] = useState(selfData !== '0');
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(false);
   const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
   const [showToTop, setShowToTop] = useState(false);
+  const [isNickname, setIsNickname] = useState(false);
 
   useEffect(() => {
     if (selfData === '0') {
@@ -60,12 +63,28 @@ export default function Stats(): JSX.Element {
     `/api/stats/?id=${selfData}`
   );
 
+  console.log(selfData);
+
   return (
     <>
       <section className={styles.stats}>
         <Header textThin="Your" textBold="Stats" icon="fortnite" />
         <main>
-          {data && data[0].data.result === true && <h2>{data[0].data.name}</h2>}
+          {data && data[0].data.result === true && (
+            <div className={styles.stats__head}>
+              <h2>{data[0].data.name}</h2>
+              <Button
+                onClick={() => {
+                  removeSelf('nickname');
+                  setIsNickname(false);
+                  setIsDataSet(false);
+                }}
+                text="New Player"
+                style="primary"
+                icon="Close"
+              />
+            </div>
+          )}
           {data &&
             data[0].data.result === true &&
             !data[0].data.global_stats.solo &&
@@ -333,7 +352,7 @@ export default function Stats(): JSX.Element {
         </main>
         <Navigation active="stats" />
       </section>
-      {selfData === '0' && (
+      {!isDataSet && !isNickname && (
         <section className={styles.modal}>
           <Header
             icon="close"
@@ -370,6 +389,7 @@ export default function Stats(): JSX.Element {
                 buttonText="Choose"
                 onClick={() => {
                   addSelf(user[0].id);
+                  setIsNickname(true);
                   setInputValue('');
                   setUser('');
                 }}
