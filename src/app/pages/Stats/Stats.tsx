@@ -372,19 +372,15 @@ export default function Stats(): JSX.Element {
               <ProfileItem
                 username={user[0].data.name}
                 avatar={'/avatars/5.webp'}
-                wins={
-                  user[0].data.global_stats !== null
-                    ? user[0].data.global_stats?.solo.placetop1
-                    : '0'
-                }
                 games={
                   user[0].data.global_stats !== null
                     ? user[0].data.global_stats.solo.matchesplayed
                     : '0'
                 }
-                link="#"
                 buttonStyle="success"
                 buttonText="Choose"
+                compare={false}
+                stats={false}
                 onClick={() => {
                   addSelf(user[0].id);
                   setIsNickname(true);
