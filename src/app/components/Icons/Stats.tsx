@@ -3,13 +3,20 @@ import React from 'react';
 type StatsProps = {
   color: string;
   onClick?: () => void;
+  height?: string;
+  width?: string;
 };
 
-export default function Stats({ color, onClick }: StatsProps): JSX.Element {
+export default function Stats({
+  color,
+  onClick,
+  height,
+  width,
+}: StatsProps): JSX.Element {
   return (
     <svg
-      width="20"
-      height="17"
+      width={width ? width : '20'}
+      height={height ? height : '17'}
       viewBox="0 0 20 17"
       fill={color}
       xmlns="http://www.w3.org/2000/svg"
