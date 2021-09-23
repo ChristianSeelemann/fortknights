@@ -63,8 +63,6 @@ export default function Stats(): JSX.Element {
     `/api/stats/?id=${selfData}`
   );
 
-  console.log(selfData);
-
   return (
     <>
       <section className={styles.stats}>
