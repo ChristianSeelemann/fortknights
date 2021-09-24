@@ -1,45 +1,72 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 import Button from '../Button/Button';
 import ProfilePicture from './ProfilePicture';
+import Compare from '../Icons/Compare';
+import Stats from '../Icons/Stats';
 
 interface ProfileItemProps {
   username: string;
   games: string | number;
-  wins: string | number;
-  link: string;
   avatar: string;
   buttonStyle: string;
-  buttonText: string;
+  buttonText: string | JSX.Element;
+  compare?: boolean;
+  stats?: boolean;
   onClick?: () => void;
+  onClickCompare?: () => void;
+  onClickStats?: () => void;
 }
 
 export default function ProfileItem({
   username,
   games,
-  wins,
-  link,
   avatar,
   buttonStyle,
   buttonText,
+  compare,
+  stats,
   onClick,
+  onClickCompare,
+  onClickStats,
 }: ProfileItemProps): JSX.Element {
   return (
     <div className={styles.profileItem}>
-      <Link to={link}>
-        <ProfilePicture image={avatar} />
-      </Link>
+      <ProfilePicture image={avatar} />
       <div className={styles.profileItem__notPicture}>
-        <Link to={link}>
-          <div className={styles.profileItem__info}>
-            {username}
-            <span>
-              {games} Games | {wins} Wins
-            </span>
-          </div>
-        </Link>
-        <Button text={buttonText} style={buttonStyle} onClick={onClick} />
+        <div className={styles.profileItem__info}>
+          {username}
+          <span>{games} Games</span>
+        </div>
+        <div className={styles.profileItem__buttonGroup}>
+          {stats && games !== '0' && (
+            <Button
+              text={
+                <Stats
+                  color="var(--clr-white)"
+                  height="0.75rem"
+                  width="0.75rem"
+                />
+              }
+              style="primary"
+              onClick={onClickStats}
+            />
+          )}
+          {compare && games !== '0' && (
+            <Button
+              text={
+                <Compare
+                  color="var(--clr-white)"
+                  height="0.75rem"
+                  width="0.75rem"
+                />
+              }
+              style="secondary"
+              onClick={onClickCompare}
+            />
+          )}
+          <Button text={buttonText} style={buttonStyle} onClick={onClick} />
+        </div>
       </div>
     </div>
   );

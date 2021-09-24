@@ -1,0 +1,81 @@
+.friendCompare {
+  padding: 5rem 0 1rem;
+  background: url('../../../assets/bg_1.webp'), var(--clr-bg-dark);
+  background-blend-mode: saturation;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.stats__item {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats__item_friend {
+  font-size: 1.35rem;
+}
+
+.stats__item_own {
+  padding-left: 0.3rem;
+  font-size: 1rem;
+}
+
+.stats__item_arrow {
+  position: relative;
+  top: 0.1rem;
+  left: 0.35rem;
+}
+
+.stats__overall,
+.stats__solo,
+.stats__duo,
+.stats__squad {
+  margin: 1.5rem;
+  background-color: var(--clr-bg-dark);
+}
+
+.stats__squad {
+  margin-bottom: 6.5rem;
+}
+
+.stats__itemGroup {
+  color: var(--clr-white);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.stats__head {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1.5rem;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.stats__overall h3,
+.stats__solo h3,
+.stats__duo h3,
+.stats__squad h3 {
+  padding: 1rem 0.75rem 0.7rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.news__toDo {
+  text-align: center;
+  padding: 0 0 8rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -3rem;
+}
+
+.news__toDo span {
+  color: var(--clr-white);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}

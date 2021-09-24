@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import Button from '../../components/Button/Button';
+import { useHistory, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Navigation from '../../components/Navigation/Navigation';
-import ProfileItem from '../../components/Profile/ProfileItem';
 import useFetch from '../../hooks/useFetch';
-import useUser from '../../hooks/useUser';
-import type statsFromAPI from '../../types/statsFromAPI';
-import styles from './Stats.module.css';
+import statsFromAPI from '../../types/statsFromAPI';
+import styles from './FriendStats.module.css';
 
-export default function Stats(): JSX.Element {
-  const { selfData, addSelf, removeSelf } = useUser();
-  const [isDataSet, setIsDataSet] = useState(selfData !== '0');
-  const [inputValue, setInputValue] = useState('');
-  const [result, setResult] = useState(false);
-  const [user, setUser] = useState<statsFromAPI[] | 'error' | ''>('');
+export default function FriendStats(): JSX.Element {
+  const history = useHistory();
+  const { id } = useParams<{ id: string }>();
+
   const [showToTop, setShowToTop] = useState(false);
-  const [isNickname, setIsNickname] = useState(false);
 
-  useEffect(() => {
-    if (selfData === '0') {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [selfData]);
+  const { data, isLoading } = useFetch<statsFromAPI[]>(`/api/stats?id=${id}`);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -38,65 +26,18 @@ export default function Stats(): JSX.Element {
     });
   }, []);
 
-  const history = useHistory();
-
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-
-    const lookupFetch = await fetch(`/api/lookup/${inputValue}`);
-    const lookupData = await lookupFetch.json();
-
-    if (lookupData.result === false) {
-      setUser('error');
-      setResult(true);
-      return;
-    }
-
-    const userFetch = await fetch(`/api/stats/?id=${lookupData.account_id}`);
-    const userData = await userFetch.json();
-
-    setUser(userData);
-    setResult(true);
-  }
-
-  const { data, isLoading } = useFetch<statsFromAPI[]>(
-    `/api/stats/?id=${selfData}`
-  );
-
   return (
     <>
-      <section className={styles.stats}>
-        <Header textThin="Your" textBold="Stats" icon="fortnite" />
-        <main>
-          {data && data[0].data.result === true && (
-            <div className={styles.stats__head}>
-              <h2>{data[0].data.name}</h2>
-              <Button
-                onClick={() => {
-                  removeSelf('nickname');
-                  setIsNickname(false);
-                  setIsDataSet(false);
-                }}
-                text="New Player"
-                style="primary"
-                icon="Close"
-              />
-            </div>
-          )}
-          {data &&
-            data[0].data.result === true &&
-            !data[0].data.global_stats.solo &&
-            !data[0].data.global_stats.duo &&
-            !data[0].data.global_stats.squad && (
-              <span className={styles.stats__none}>
-                You dont have played any Game :(
-              </span>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            (data[0].data.global_stats.solo ||
-              data[0].data.global_stats.duo ||
-              data[0].data.global_stats.squad) && (
+      <section className={styles.friendStats}>
+        {!isLoading && data && (
+          <>
+            <Header
+              textThin={data[0].data.name}
+              textBold="Stats"
+              icon="close"
+              onClick={() => history.push('/friends')}
+            />
+            <main>
               <section className={styles.stats__overall}>
                 <h3 className="uncommon">Overall Stats</h3>
                 <section className={styles.stats__itemGroup}>
@@ -188,10 +129,7 @@ export default function Stats(): JSX.Element {
                   </div>
                 </section>
               </section>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.solo && (
+
               <section className={styles.stats__solo}>
                 <h3 className="rare">Solo Stats</h3>
                 <section className={styles.stats__itemGroup}>
@@ -238,10 +176,7 @@ export default function Stats(): JSX.Element {
                   </div>
                 </section>
               </section>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.duo && (
+
               <section className={styles.stats__duo}>
                 <h3 className="epic">Duo Stats</h3>
                 <section className={styles.stats__itemGroup}>
@@ -286,10 +221,7 @@ export default function Stats(): JSX.Element {
                   </div>
                 </section>
               </section>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.squad && (
+
               <section className={styles.stats__squad}>
                 <h3 className="legendary">Squad Stats</h3>
                 <section className={styles.stats__itemGroup}>
@@ -336,65 +268,17 @@ export default function Stats(): JSX.Element {
                   </div>
                 </section>
               </section>
-            )}
-          {showToTop === true && (
-            <div className={styles.news__toDo}>
-              <ToTop color="var(--clr-white)" />
-              <span>This is everything :)</span>
-            </div>
-          )}
-        </main>
-        <Navigation active="stats" />
+              {showToTop === true && (
+                <div className={styles.news__toDo}>
+                  <ToTop color="var(--clr-white)" />
+                  <span>This is everything :)</span>
+                </div>
+              )}
+            </main>
+            <Navigation active="friends" />
+          </>
+        )}
       </section>
-      {!isDataSet && !isNickname && (
-        <section className={styles.modal}>
-          <Header
-            icon="close"
-            textThin="Your"
-            textBold="Self"
-            onClick={() => history.push('/')}
-          />
-          <section className={styles.modal__section}>
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <input
-                className={styles.form__input}
-                type="text"
-                placeholder="Type in your Username"
-                value={inputValue}
-                onChange={(event) => setInputValue(event.target.value)}
-              />
-            </form>
-            {user !== 'error' && result && user !== '' && (
-              <ProfileItem
-                username={user[0].data.name}
-                avatar={'/avatars/5.webp'}
-                games={
-                  user[0].data.global_stats !== null
-                    ? user[0].data.global_stats.solo.matchesplayed
-                    : '0'
-                }
-                buttonStyle="success"
-                buttonText="Choose"
-                compare={false}
-                stats={false}
-                onClick={() => {
-                  addSelf(user[0].id);
-                  setIsNickname(true);
-                  setInputValue('');
-                  setUser('');
-                }}
-              />
-            )}
-            {user === 'error' && result && (
-              <span className={styles.modal__span}>
-                No player found :(
-                <br />
-                Maybe try another one :)
-              </span>
-            )}
-          </section>
-        </section>
-      )}
       {isLoading && <LoadingSpinner />}
     </>
   );

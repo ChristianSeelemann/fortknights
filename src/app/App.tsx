@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import FriendCompare from './pages/FriendCompare/FriendCompare';
 import Friends from './pages/Friends/Friends';
+import FriendStats from './pages/FriendStats/FriendStats';
 import Items from './pages/Items/Items';
 import Map from './pages/Map/Map';
 import News from './pages/News/News';
@@ -21,6 +23,12 @@ function App(): JSX.Element {
         </Route>
         <Route path="/friends">
           <Friends />
+        </Route>
+        <Route path="/friendstats/:id">
+          <FriendStats />
+        </Route>
+        <Route path="/friendcompare/:id1/:id2">
+          <FriendCompare />
         </Route>
         <Route path="/map">
           <Map />

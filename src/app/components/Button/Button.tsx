@@ -11,7 +11,7 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
   style: 'warning' | 'success' | 'primary' | 'secondary' | 'accent' | string;
-  text: string;
+  text: string | JSX.Element;
   icon?:
     | 'Close'
     | 'Fortnite'
