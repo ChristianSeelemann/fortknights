@@ -53,10 +53,6 @@ export default function Friends(): JSX.Element {
     setResult(true);
   }
 
-  function handleCompareClick() {
-    console.log('compare');
-  }
-
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 10) {
@@ -118,7 +114,9 @@ export default function Friends(): JSX.Element {
                   onClickStats={() => {
                     history.push(`/friendstats/${user.id}`);
                   }}
-                  onClickCompare={() => handleCompareClick()}
+                  onClickCompare={() => {
+                    history.push(`/friendcompare/${user.id}/${selfData}`);
+                  }}
                   key={user.id}
                 />
               ))}
@@ -131,11 +129,7 @@ export default function Friends(): JSX.Element {
           {showToTop === true && (
             <div className={styles.news__toDo}>
               <ToTop color="var(--clr-white)" />
-              <span>
-                This is everything :)
-                <br />
-                Come back later for new great stuff!
-              </span>
+              <span>This is everything :)</span>
             </div>
           )}
         </main>
@@ -187,7 +181,7 @@ export default function Friends(): JSX.Element {
                 }
                 onClick={() => {
                   handleFriendClick(user[0].id);
-                  setModal(true);
+                  setModal(false);
                   setInputValue('');
                   setUser('');
                 }}
