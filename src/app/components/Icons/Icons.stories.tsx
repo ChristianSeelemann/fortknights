@@ -1,4 +1,5 @@
 import React from 'react';
+import Arrow from './Arrow';
 import Close from './Close';
 import Compare from './Compare';
 import Fortnite from './Fortnite';
@@ -29,6 +30,7 @@ export const CloseIcon = (): JSX.Element => <Close color="var(--clr-white)" />;
 export const CompareIcon = (): JSX.Element => (
   <Compare color="var(--clr-white)" />
 );
+export const ArrowIcon = (): JSX.Element => <Arrow color="var(--clr-white)" />;
 export const ToTopIcon = (): JSX.Element => <ToTop color="var(--clr-white)" />;
 export const FortniteIcon = (): JSX.Element => (
   <Fortnite color="var(--clr-white)" />
