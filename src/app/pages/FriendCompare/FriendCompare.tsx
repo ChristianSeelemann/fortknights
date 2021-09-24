@@ -97,7 +97,7 @@ export default function FriendCompare(): JSX.Element {
                     </div>
                     <div className={styles.stats__item}>
                       <div>
-                        Kills/Match
+                        K/M
                         <span className={styles.stats__item_arrow}>
                           <ArrowIcon
                             width="1rem"
@@ -606,7 +606,7 @@ export default function FriendCompare(): JSX.Element {
                   </div>
                   <div className={styles.stats__item}>
                     <div>
-                      Kills/Match
+                      K/M
                       <span className={styles.stats__item_arrow}>
                         <ArrowIcon
                           width="1rem"
@@ -974,7 +974,7 @@ export default function FriendCompare(): JSX.Element {
                   </div>
                   <div className={styles.stats__item}>
                     <div>
-                      Kills/Match
+                      K/M
                       <span className={styles.stats__item_arrow}>
                         <ArrowIcon
                           width="1rem"
@@ -1340,7 +1340,7 @@ export default function FriendCompare(): JSX.Element {
                   </div>
                   <div className={styles.stats__item}>
                     <div>
-                      Kills/Match
+                      K/M
                       <span className={styles.stats__item_arrow}>
                         <ArrowIcon
                           width="1rem"
