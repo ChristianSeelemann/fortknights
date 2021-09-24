@@ -340,11 +340,7 @@ export default function Stats(): JSX.Element {
           {showToTop === true && (
             <div className={styles.news__toDo}>
               <ToTop color="var(--clr-white)" />
-              <span>
-                This is everything :)
-                <br />
-                Come back later for new great stuff!
-              </span>
+              <span>This is everything :)</span>
             </div>
           )}
         </main>
