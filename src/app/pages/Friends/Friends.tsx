@@ -93,7 +93,9 @@ export default function Friends(): JSX.Element {
               friendsData.length !== 0 &&
               friendList.map((user, index) => (
                 <ProfileItem
-                  username={user.data.name}
+                  username={
+                    user.data.name ? user.data.name.substr(0, 10) : 'Loading...'
+                  }
                   games={
                     user.data.global_stats && user.data.global_stats !== null
                       ? user.data.global_stats.solo.matchesplayed
