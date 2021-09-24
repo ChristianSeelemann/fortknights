@@ -22,10 +22,10 @@ export default function Arrow({
       width={width ? width : '22'}
       height={height ? height : '22'}
       viewBox="0 0 22 22"
-      fill={!draw ? color : 'orange'}
+      fill={draw ? 'orange' : color}
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
-      transform={`rotate(${!draw ? rotate : 90})`}
+      transform={`rotate(${draw ? 90 : rotate})`}
     >
       <path
         fillRule="evenodd"
