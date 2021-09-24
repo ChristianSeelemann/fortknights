@@ -1,5 +1,5 @@
 .friendCompare {
-  padding: 5rem 0 0;
+  padding: 5rem 0 1rem;
   background: url('../../../assets/bg_1.webp'), var(--clr-bg-dark);
   background-blend-mode: saturation;
   background-position: center;
