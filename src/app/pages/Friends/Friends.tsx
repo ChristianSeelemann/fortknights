@@ -123,9 +123,13 @@ export default function Friends(): JSX.Element {
                 />
               ))}
 
-            {friendsData.length === 0 &&
-              isLoading === false &&
-              'There is no Knight in your list :( Wanna add your first Knight?'}
+            {friendsData.length === 0 && isLoading === false && (
+              <div>
+                There is no Knight in your list :(
+                <br />
+                Wanna add your first Knight?
+              </div>
+            )}
             {isLoading === true && 'Loading your Knights...'}
           </section>
           {showToTop === true && (
