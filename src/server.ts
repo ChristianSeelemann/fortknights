@@ -87,6 +87,20 @@ app.get('/api/items', async (_request, response) => {
   response.json(items);
 });
 
+app.get('/api/item/:id', async (request, response) => {
+  const { id } = request.params;
+  const itemFetch = await fetch(
+    `https://fortniteapi.io/v2/items/get?id=${id}&lang=en`,
+    {
+      headers: {
+        Authorization: `${API_KEY}`,
+      },
+    }
+  );
+  const itemData = await itemFetch.json();
+  response.json(itemData);
+});
+
 app.get('/api/map', async (_request, response) => {
   const mapFetch = await fetch('https://fortniteapi.io/v2/game/poi?lang=en', {
     headers: {

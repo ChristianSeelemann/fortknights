@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Cosmetic from '../../components/Cosmetic/Cosmetic';
 import Navigation from '../../components/Navigation/Navigation';
@@ -8,6 +9,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ToTop from '../../components/Icons/ToTop';
 
 interface itemsFromAPI {
+  mainId: string;
   displayName: string;
   displayAssets: [
     {
@@ -54,13 +56,14 @@ export default function Items(): JSX.Element {
             {!isLoading &&
               data &&
               data.map((item) => (
-                <Cosmetic
-                  name={item.displayName}
-                  price={item.price.finalPrice}
-                  image={item.displayAssets[0].url}
-                  rarity={item.rarity.name}
-                  key={item.displayName}
-                />
+                <Link to={`/item/${item.mainId}`} key={item.mainId}>
+                  <Cosmetic
+                    name={item.displayName}
+                    price={item.price.finalPrice}
+                    image={item.displayAssets[0].url}
+                    rarity={item.rarity.name}
+                  />
+                </Link>
               ))}
           </section>
           {showToTop && (
