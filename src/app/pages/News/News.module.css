@@ -8,14 +8,6 @@
   min-height: 100vh;
 }
 
-.news__h2 {
-  padding-top: 2.25rem;
-}
-
-.news__h2_first {
-  padding-top: 0;
-}
-
 .news__itemGroup {
   padding: 0 1.5rem;
   color: var(--clr-white);
@@ -23,6 +15,12 @@
 
 .news__itemGroup article {
   padding: 1.5rem 0 0 0;
+}
+
+.news__tags {
+  display: flex;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  gap: 0.625rem;
 }
 
 .news__toDo {
