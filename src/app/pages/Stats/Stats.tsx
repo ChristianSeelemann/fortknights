@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import ToTop from '../../components/Icons/ToTop';
@@ -65,337 +66,393 @@ export default function Stats(): JSX.Element {
 
   return (
     <>
-      <section className={styles.stats}>
-        <Header textThin="Your" textBold="Stats" icon="fortnite" />
-        <main>
-          {data && data[0].data.result === true && (
-            <div className={styles.stats__head}>
-              <h2>{data[0].data.name}</h2>
-              <Button
-                onClick={() => {
-                  removeSelf('nickname');
-                  setIsNickname(false);
-                  setIsDataSet(false);
-                }}
-                text="New Player"
-                style="primary"
-                icon="Close"
-              />
-            </div>
-          )}
-          {data &&
-            data[0].data.result === true &&
-            !data[0].data.global_stats.solo &&
-            !data[0].data.global_stats.duo &&
-            !data[0].data.global_stats.squad && (
-              <span className={styles.stats__none}>
-                You dont have played any Game :(
-              </span>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <section className={styles.stats}>
+          <Header textThin="Your" textBold="Stats" icon="fortnite" />
+          <main>
+            {data && data[0].data.result === true && (
+              <motion.div
+                className={styles.stats__head}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ type: 'spring' }}
+              >
+                <h2>{data[0].data.name}</h2>
+                <Button
+                  onClick={() => {
+                    removeSelf('nickname');
+                    setIsNickname(false);
+                    setIsDataSet(false);
+                  }}
+                  text="New Player"
+                  style="primary"
+                  icon="Close"
+                />
+              </motion.div>
             )}
-          {data &&
-            data[0].data.result === true &&
-            (data[0].data.global_stats.solo ||
-              data[0].data.global_stats.duo ||
-              data[0].data.global_stats.squad) && (
-              <section className={styles.stats__overall}>
-                <h3 className="uncommon">Overall Stats</h3>
-                <section className={styles.stats__itemGroup}>
-                  <div className={styles.stats__item}>
-                    Kills
-                    <span>
-                      {data[0].data.global_stats.solo.kills +
-                        data[0].data.global_stats.duo.kills +
-                        data[0].data.global_stats.squad.kills}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Kills / Match
-                    <span>
-                      {Number(
-                        (data[0].data.global_stats.solo.kd +
-                          data[0].data.global_stats.duo.kd +
-                          data[0].data.global_stats.squad.kd) /
-                          3
-                      ).toFixed(2)}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Matches
-                    <span>
-                      {data[0].data.global_stats.solo.matchesplayed +
-                        data[0].data.global_stats.duo.matchesplayed +
-                        data[0].data.global_stats.squad.matchesplayed}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Wins
-                    <span>
-                      {data[0].data.global_stats.solo.placetop1 +
-                        data[0].data.global_stats.duo.placetop1 +
-                        data[0].data.global_stats.squad.placetop1}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 3s
-                    <span>
-                      {data[0].data.global_stats.solo.placetop3 +
-                        data[0].data.global_stats.duo.placetop3 +
-                        data[0].data.global_stats.squad.placetop3}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 5s
-                    <span>
-                      {data[0].data.global_stats.solo.placetop5 +
-                        data[0].data.global_stats.duo.placetop5 +
-                        data[0].data.global_stats.squad.placetop5}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 10s
-                    <span>
-                      {data[0].data.global_stats.solo.placetop10 +
-                        data[0].data.global_stats.duo.placetop10 +
-                        data[0].data.global_stats.squad.placetop10}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 25s
-                    <span>
-                      {data[0].data.global_stats.solo.placetop25 +
-                        data[0].data.global_stats.duo.placetop25 +
-                        data[0].data.global_stats.squad.placetop25}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Winrate
-                    <span>
-                      {Number(
-                        (data[0].data.global_stats.solo.winrate +
-                          data[0].data.global_stats.duo.winrate +
-                          data[0].data.global_stats.squad.winrate) /
-                          3
-                      ).toFixed(2)}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Score
-                    <span>
-                      {data[0].data.global_stats.solo.score +
-                        data[0].data.global_stats.duo.score +
-                        data[0].data.global_stats.squad.score}
-                    </span>
-                  </div>
-                </section>
-              </section>
+            {data &&
+              data[0].data.result === true &&
+              !data[0].data.global_stats.solo &&
+              !data[0].data.global_stats.duo &&
+              !data[0].data.global_stats.squad && (
+                <motion.span
+                  className={styles.stats__none}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  You dont have played any Game :(
+                </motion.span>
+              )}
+            {data &&
+              data[0].data.result === true &&
+              (data[0].data.global_stats.solo ||
+                data[0].data.global_stats.duo ||
+                data[0].data.global_stats.squad) && (
+                <motion.section
+                  className={styles.stats__overall}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  <h3 className="uncommon">Overall Stats</h3>
+                  <section className={styles.stats__itemGroup}>
+                    <div className={styles.stats__item}>
+                      Kills
+                      <span>
+                        {data[0].data.global_stats.solo.kills +
+                          data[0].data.global_stats.duo.kills +
+                          data[0].data.global_stats.squad.kills}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Kills / Match
+                      <span>
+                        {Number(
+                          (data[0].data.global_stats.solo.kd +
+                            data[0].data.global_stats.duo.kd +
+                            data[0].data.global_stats.squad.kd) /
+                            3
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Matches
+                      <span>
+                        {data[0].data.global_stats.solo.matchesplayed +
+                          data[0].data.global_stats.duo.matchesplayed +
+                          data[0].data.global_stats.squad.matchesplayed}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Wins
+                      <span>
+                        {data[0].data.global_stats.solo.placetop1 +
+                          data[0].data.global_stats.duo.placetop1 +
+                          data[0].data.global_stats.squad.placetop1}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 3s
+                      <span>
+                        {data[0].data.global_stats.solo.placetop3 +
+                          data[0].data.global_stats.duo.placetop3 +
+                          data[0].data.global_stats.squad.placetop3}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 5s
+                      <span>
+                        {data[0].data.global_stats.solo.placetop5 +
+                          data[0].data.global_stats.duo.placetop5 +
+                          data[0].data.global_stats.squad.placetop5}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 10s
+                      <span>
+                        {data[0].data.global_stats.solo.placetop10 +
+                          data[0].data.global_stats.duo.placetop10 +
+                          data[0].data.global_stats.squad.placetop10}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 25s
+                      <span>
+                        {data[0].data.global_stats.solo.placetop25 +
+                          data[0].data.global_stats.duo.placetop25 +
+                          data[0].data.global_stats.squad.placetop25}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Winrate
+                      <span>
+                        {Number(
+                          (data[0].data.global_stats.solo.winrate +
+                            data[0].data.global_stats.duo.winrate +
+                            data[0].data.global_stats.squad.winrate) /
+                            3
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Score
+                      <span>
+                        {data[0].data.global_stats.solo.score +
+                          data[0].data.global_stats.duo.score +
+                          data[0].data.global_stats.squad.score}
+                      </span>
+                    </div>
+                  </section>
+                </motion.section>
+              )}
+            {data &&
+              data[0].data.result === true &&
+              data[0].data.global_stats.solo && (
+                <motion.section
+                  className={styles.stats__solo}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  <h3 className="rare">Solo Stats</h3>
+                  <section className={styles.stats__itemGroup}>
+                    <div className={styles.stats__item}>
+                      Kills<span>{data[0].data.global_stats.solo.kills}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Kills / Match
+                      <span>{data[0].data.global_stats.solo.kd}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Matches
+                      <span>
+                        {data[0].data.global_stats.solo.matchesplayed}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Wins
+                      <span>{data[0].data.global_stats.solo.placetop1}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 3s
+                      <span>{data[0].data.global_stats.solo.placetop3}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 5s
+                      <span>{data[0].data.global_stats.solo.placetop5}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 10s
+                      <span>{data[0].data.global_stats.solo.placetop10}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 25s
+                      <span>{data[0].data.global_stats.solo.placetop25}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Winrate
+                      <span>
+                        {Number(data[0].data.global_stats.solo.winrate).toFixed(
+                          2
+                        )}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Score<span>{data[0].data.global_stats.solo.score}</span>
+                    </div>
+                  </section>
+                </motion.section>
+              )}
+            {data &&
+              data[0].data.result === true &&
+              data[0].data.global_stats.duo && (
+                <motion.section
+                  className={styles.stats__duo}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  <h3 className="epic">Duo Stats</h3>
+                  <section className={styles.stats__itemGroup}>
+                    <div className={styles.stats__item}>
+                      Kills<span>{data[0].data.global_stats.duo.kills}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Kills / Match
+                      <span>{data[0].data.global_stats.duo.kd}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Matches
+                      <span>{data[0].data.global_stats.duo.matchesplayed}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Wins<span>{data[0].data.global_stats.duo.placetop1}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 3s
+                      <span>{data[0].data.global_stats.duo.placetop3}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 5s
+                      <span>{data[0].data.global_stats.duo.placetop5}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 10s
+                      <span>{data[0].data.global_stats.duo.placetop10}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 25s
+                      <span>{data[0].data.global_stats.duo.placetop25}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Winrate
+                      <span>
+                        {Number(data[0].data.global_stats.duo.winrate).toFixed(
+                          2
+                        )}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Score<span>{data[0].data.global_stats.duo.score}</span>
+                    </div>
+                  </section>
+                </motion.section>
+              )}
+            {data &&
+              data[0].data.result === true &&
+              data[0].data.global_stats.squad && (
+                <motion.section
+                  className={styles.stats__squad}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  <h3 className="legendary">Squad Stats</h3>
+                  <section className={styles.stats__itemGroup}>
+                    <div className={styles.stats__item}>
+                      Kills<span>{data[0].data.global_stats.squad.kills}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Kills / Match
+                      <span>{data[0].data.global_stats.squad.kd}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Matches
+                      <span>
+                        {data[0].data.global_stats.squad.matchesplayed}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Wins
+                      <span>{data[0].data.global_stats.squad.placetop1}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 3s
+                      <span>{data[0].data.global_stats.squad.placetop3}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 5s
+                      <span>{data[0].data.global_stats.squad.placetop5}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 10s
+                      <span>{data[0].data.global_stats.squad.placetop10}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Top 25s
+                      <span>{data[0].data.global_stats.squad.placetop25}</span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Winrate
+                      <span>
+                        {Number(
+                          data[0].data.global_stats.squad.winrate
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.stats__item}>
+                      Score<span>{data[0].data.global_stats.squad.score}</span>
+                    </div>
+                  </section>
+                </motion.section>
+              )}
+            {showToTop === true && (
+              <div className={styles.news__toDo}>
+                <ToTop color="var(--clr-white)" />
+                <span>This is everything :)</span>
+              </div>
             )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.solo && (
-              <section className={styles.stats__solo}>
-                <h3 className="rare">Solo Stats</h3>
-                <section className={styles.stats__itemGroup}>
-                  <div className={styles.stats__item}>
-                    Kills<span>{data[0].data.global_stats.solo.kills}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Kills / Match
-                    <span>{data[0].data.global_stats.solo.kd}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Matches
-                    <span>{data[0].data.global_stats.solo.matchesplayed}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Wins<span>{data[0].data.global_stats.solo.placetop1}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 3s
-                    <span>{data[0].data.global_stats.solo.placetop3}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 5s
-                    <span>{data[0].data.global_stats.solo.placetop5}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 10s
-                    <span>{data[0].data.global_stats.solo.placetop10}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 25s
-                    <span>{data[0].data.global_stats.solo.placetop25}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Winrate
-                    <span>
-                      {Number(data[0].data.global_stats.solo.winrate).toFixed(
-                        2
-                      )}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Score<span>{data[0].data.global_stats.solo.score}</span>
-                  </div>
-                </section>
-              </section>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.duo && (
-              <section className={styles.stats__duo}>
-                <h3 className="epic">Duo Stats</h3>
-                <section className={styles.stats__itemGroup}>
-                  <div className={styles.stats__item}>
-                    Kills<span>{data[0].data.global_stats.duo.kills}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Kills / Match
-                    <span>{data[0].data.global_stats.duo.kd}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Matches
-                    <span>{data[0].data.global_stats.duo.matchesplayed}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Wins<span>{data[0].data.global_stats.duo.placetop1}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 3s
-                    <span>{data[0].data.global_stats.duo.placetop3}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 5s
-                    <span>{data[0].data.global_stats.duo.placetop5}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 10s
-                    <span>{data[0].data.global_stats.duo.placetop10}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 25s
-                    <span>{data[0].data.global_stats.duo.placetop25}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Winrate
-                    <span>
-                      {Number(data[0].data.global_stats.duo.winrate).toFixed(2)}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Score<span>{data[0].data.global_stats.duo.score}</span>
-                  </div>
-                </section>
-              </section>
-            )}
-          {data &&
-            data[0].data.result === true &&
-            data[0].data.global_stats.squad && (
-              <section className={styles.stats__squad}>
-                <h3 className="legendary">Squad Stats</h3>
-                <section className={styles.stats__itemGroup}>
-                  <div className={styles.stats__item}>
-                    Kills<span>{data[0].data.global_stats.squad.kills}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Kills / Match
-                    <span>{data[0].data.global_stats.squad.kd}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Matches
-                    <span>{data[0].data.global_stats.squad.matchesplayed}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Wins<span>{data[0].data.global_stats.squad.placetop1}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 3s
-                    <span>{data[0].data.global_stats.squad.placetop3}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 5s
-                    <span>{data[0].data.global_stats.squad.placetop5}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 10s
-                    <span>{data[0].data.global_stats.squad.placetop10}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Top 25s
-                    <span>{data[0].data.global_stats.squad.placetop25}</span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Winrate
-                    <span>
-                      {Number(data[0].data.global_stats.squad.winrate).toFixed(
-                        2
-                      )}
-                    </span>
-                  </div>
-                  <div className={styles.stats__item}>
-                    Score<span>{data[0].data.global_stats.squad.score}</span>
-                  </div>
-                </section>
-              </section>
-            )}
-          {showToTop === true && (
-            <div className={styles.news__toDo}>
-              <ToTop color="var(--clr-white)" />
-              <span>This is everything :)</span>
-            </div>
-          )}
-        </main>
-        <Navigation active="stats" />
-      </section>
-      {!isDataSet && !isNickname && (
-        <section className={styles.modal}>
-          <Header
-            icon="close"
-            textThin="Your"
-            textBold="Self"
-            onClick={() => history.push('/')}
-          />
-          <section className={styles.modal__section}>
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <input
-                className={styles.form__input}
-                type="text"
-                placeholder="Type in your Username"
-                value={inputValue}
-                onChange={(event) => setInputValue(event.target.value)}
-              />
-            </form>
-            {user !== 'error' && result && user !== '' && (
-              <ProfileItem
-                username={user[0].data.name}
-                avatar={'/avatars/5.webp'}
-                games={
-                  user[0].data.global_stats !== null
-                    ? user[0].data.global_stats.solo.matchesplayed
-                    : '0'
-                }
-                buttonStyle="success"
-                buttonText="Choose"
-                compare={false}
-                stats={false}
-                onClick={() => {
-                  addSelf(user[0].id);
-                  setIsNickname(true);
-                  setInputValue('');
-                  setUser('');
-                }}
-              />
-            )}
-            {user === 'error' && result && (
-              <span className={styles.modal__span}>
-                No player found :(
-                <br />
-                Maybe try another one :)
-              </span>
-            )}
-          </section>
+          </main>
+          <Navigation active="stats" />
         </section>
-      )}
-      {isLoading && <LoadingSpinner />}
+        {!isDataSet && !isNickname && (
+          <section className={styles.modal}>
+            <Header
+              icon="close"
+              textThin="Your"
+              textBold="Self"
+              onClick={() => history.push('/')}
+            />
+            <section className={styles.modal__section}>
+              <form className={styles.form} onSubmit={handleSubmit}>
+                <input
+                  className={styles.form__input}
+                  type="text"
+                  placeholder="Type in your Username"
+                  value={inputValue}
+                  onChange={(event) => setInputValue(event.target.value)}
+                />
+              </form>
+              {user !== 'error' && result && user !== '' && (
+                <ProfileItem
+                  username={user[0].data.name}
+                  avatar={'/avatars/5.webp'}
+                  games={
+                    user[0].data.global_stats !== null
+                      ? user[0].data.global_stats.solo.matchesplayed
+                      : '0'
+                  }
+                  buttonStyle="success"
+                  buttonText="Choose"
+                  compare={false}
+                  stats={false}
+                  onClick={() => {
+                    addSelf(user[0].id);
+                    setIsNickname(true);
+                    setInputValue('');
+                    setUser('');
+                  }}
+                />
+              )}
+              {user === 'error' && result && (
+                <span className={styles.modal__span}>
+                  No player found :(
+                  <br />
+                  Maybe try another one :)
+                </span>
+              )}
+            </section>
+          </section>
+        )}
+      </motion.div>
+
+      <AnimatePresence exitBeforeEnter>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <LoadingSpinner />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

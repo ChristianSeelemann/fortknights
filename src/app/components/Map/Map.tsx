@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import useFetch from '../../hooks/useFetch';
 import Close from '../Icons/Close';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -71,11 +72,14 @@ export default function mapComponent(): JSX.Element {
               <ul className={styles.pois__ul}>
                 {mapData &&
                   mapData.map((poi) => (
-                    <li
+                    <motion.li
                       onClick={(event) => handlePOIClick(event)}
                       className={`${styles.pois__item}`}
                       key={poi.name}
                       style={{ left: poi.x, top: poi.y }}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: 'spring' }}
                     >
                       <div
                         onClick={(event) => handlePOIClose(event)}
@@ -97,7 +101,7 @@ export default function mapComponent(): JSX.Element {
                           />
                         </span>
                       </div>
-                    </li>
+                    </motion.li>
                   ))}
               </ul>
             </div>
