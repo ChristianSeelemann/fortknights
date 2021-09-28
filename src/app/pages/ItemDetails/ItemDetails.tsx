@@ -34,9 +34,6 @@ export default function ItemDetails(): JSX.Element {
   const history = useHistory();
 
   const { data, isLoading } = useFetch<detailsFromAPI>(`/api/item/${param.id}`);
-  if (!isLoading) {
-    console.log(data);
-  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
