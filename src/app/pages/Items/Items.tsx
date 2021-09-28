@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../../components/Header/Header';
 import Cosmetic from '../../components/Cosmetic/Cosmetic';
 import Navigation from '../../components/Navigation/Navigation';
@@ -41,45 +42,74 @@ export default function Items(): JSX.Element {
 
   return (
     <>
-      <section className={styles.items}>
-        <Header textThin="Cosmetics" textBold="Shop" icon="fortnite" />
-        <main>
-          <div className={styles.items__information}>
-            Current Rotation
-            <span>
-              The Current item shop rotation for Battle Royale.
-              <br />
-              Updates daily at 00:00.
-            </span>
-          </div>
-          <section className={styles.items__group}>
-            {!isLoading &&
-              data &&
-              data.map((item) => (
-                <Link to={`/item/${item.mainId}`} key={item.mainId}>
-                  <Cosmetic
-                    name={item.displayName}
-                    price={item.price.finalPrice}
-                    image={item.displayAssets[0].url}
-                    rarity={item.rarity.name}
-                  />
-                </Link>
-              ))}
-          </section>
-          {showToTop && (
-            <div className={styles.news__toDo}>
-              <ToTop color="var(--clr-white)" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <section className={styles.items}>
+          <Header textThin="Cosmetics" textBold="Shop" icon="fortnite" />
+          <main>
+            <motion.div
+              className={styles.items__information}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ type: 'spring' }}
+            >
+              Current Rotation
               <span>
-                This is everything :)
+                The Current item shop rotation for Battle Royale.
                 <br />
-                Come back later for new great stuff!
+                Updates daily at 00:00.
               </span>
-            </div>
-          )}
-        </main>
-        <Navigation active="items" />
-      </section>
-      {isLoading && <LoadingSpinner />}
+            </motion.div>
+            <section className={styles.items__group}>
+              {!isLoading &&
+                data &&
+                data.map((item) => (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    <Link to={`/item/${item.mainId}`} key={item.mainId}>
+                      <Cosmetic
+                        name={item.displayName}
+                        price={item.price.finalPrice}
+                        image={item.displayAssets[0].url}
+                        rarity={item.rarity.name}
+                      />
+                    </Link>
+                  </motion.div>
+                ))}
+            </section>
+            {showToTop && (
+              <div className={styles.news__toDo}>
+                <ToTop color="var(--clr-white)" />
+                <span>
+                  This is everything :)
+                  <br />
+                  Come back later for new great stuff!
+                </span>
+              </div>
+            )}
+          </main>
+          <Navigation active="items" />
+        </section>
+      </motion.div>
+
+      <AnimatePresence exitBeforeEnter>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <LoadingSpinner />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

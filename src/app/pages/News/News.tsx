@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import useFetch from '../../hooks/useFetch';
 import Card from '../../components/Card/Card';
 import Header from '../../components/Header/Header';
@@ -53,88 +54,145 @@ export default function News(): JSX.Element {
 
   return (
     <>
-      <section className={styles.news}>
-        <Header textThin="Fort" textBold="Knights" icon="fortnite" />
-        <main>
-          <section className={styles.news__tags}>
-            <Tag
-              style="battleroyale"
-              text="Battle Royale"
-              onClick={() => handleFilterClick('battleroyale')}
-            />
-            <Tag
-              style="savetheworld"
-              text="Save the World"
-              onClick={() => handleFilterClick('savetheworld')}
-            />
-            <Tag
-              style="creative"
-              text="Creative"
-              onClick={() => handleFilterClick('creative')}
-            />
-          </section>
-          <section className={styles.news__itemGroup}>
-            {battleRoyaleNews &&
-              (!isFiltered || filteredMode === 'battleroyale') && (
-                <h2>Battle Royale</h2>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <section className={styles.news}>
+          <Header textThin="Fort" textBold="Knights" icon="fortnite" />
+          <main>
+            <motion.section
+              className={styles.news__tags}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ type: 'spring' }}
+            >
+              <Tag
+                style="battleroyale"
+                text="Battle Royale"
+                onClick={() => handleFilterClick('battleroyale')}
+              />
+              <Tag
+                style="savetheworld"
+                text="Save the World"
+                onClick={() => handleFilterClick('savetheworld')}
+              />
+              <Tag
+                style="creative"
+                text="Creative"
+                onClick={() => handleFilterClick('creative')}
+              />
+            </motion.section>
+            <section className={styles.news__itemGroup}>
+              {battleRoyaleNews &&
+                (!isFiltered || filteredMode === 'battleroyale') && (
+                  <motion.h2
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    Battle Royale
+                  </motion.h2>
+                )}
+              {battleRoyaleNews &&
+                (!isFiltered || filteredMode === 'battleroyale') &&
+                battleRoyaleNews?.map((item) => (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    <Card
+                      key={item.id}
+                      title={item.body}
+                      image={item.image}
+                      date={item.title}
+                      gamemode="br"
+                    />
+                  </motion.div>
+                ))}
+              {saveTheWorldNews &&
+                (!isFiltered || filteredMode === 'savetheworld') && (
+                  <motion.h2
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    Save the World
+                  </motion.h2>
+                )}
+              {saveTheWorldNews &&
+                (!isFiltered || filteredMode === 'savetheworld') &&
+                saveTheWorldNews.map((item) => (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    <Card
+                      key={item.title}
+                      title={item.body}
+                      image={item.image}
+                      date={item.title}
+                      gamemode="stw"
+                    />
+                  </motion.div>
+                ))}
+              {creativeNews && (!isFiltered || filteredMode === 'creative') && (
+                <motion.h2
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring' }}
+                >
+                  Creative
+                </motion.h2>
               )}
-            {battleRoyaleNews &&
-              (!isFiltered || filteredMode === 'battleroyale') &&
-              battleRoyaleNews?.map((item) => (
-                <Card
-                  key={item.id}
-                  title={item.body}
-                  image={item.image}
-                  date={item.title}
-                  gamemode="br"
-                />
-              ))}
-            {saveTheWorldNews &&
-              (!isFiltered || filteredMode === 'savetheworld') && (
-                <h2>Save the World</h2>
-              )}
-            {saveTheWorldNews &&
-              (!isFiltered || filteredMode === 'savetheworld') &&
-              saveTheWorldNews.map((item) => (
-                <Card
-                  key={item.title}
-                  title={item.body}
-                  image={item.image}
-                  date={item.title}
-                  gamemode="stw"
-                />
-              ))}
-            {creativeNews && (!isFiltered || filteredMode === 'creative') && (
-              <h2>Creative</h2>
+              {creativeNews &&
+                (!isFiltered || filteredMode === 'creative') &&
+                creativeNews?.map((item) => (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring' }}
+                  >
+                    <Card
+                      key={item.id}
+                      title={item.body}
+                      image={item.image}
+                      date={item.title}
+                      gamemode="creative"
+                    />
+                  </motion.div>
+                ))}
+            </section>
+            {showToTop === true && (
+              <div className={styles.news__toDo}>
+                <ToTop color="var(--clr-white)" />
+                <span>
+                  This is everything :)
+                  <br />
+                  Come back later for new great stuff!
+                </span>
+              </div>
             )}
-            {creativeNews &&
-              (!isFiltered || filteredMode === 'creative') &&
-              creativeNews?.map((item) => (
-                <Card
-                  key={item.id}
-                  title={item.body}
-                  image={item.image}
-                  date={item.title}
-                  gamemode="creative"
-                />
-              ))}
-          </section>
-          {showToTop === true && (
-            <div className={styles.news__toDo}>
-              <ToTop color="var(--clr-white)" />
-              <span>
-                This is everything :)
-                <br />
-                Come back later for new great stuff!
-              </span>
-            </div>
-          )}
-        </main>
-        <Navigation active="news" />
-      </section>
-      {(battleRoyaleLoading || saveTheWorldLoading || creativeLoading) && (
-        <LoadingSpinner />
-      )}
+          </main>
+          <Navigation active="news" />
+        </section>
+      </motion.div>
+
+      <AnimatePresence>
+        {(battleRoyaleLoading || saveTheWorldLoading || creativeLoading) && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <LoadingSpinner />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
