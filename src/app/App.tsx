@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import FriendCompare from './pages/FriendCompare/FriendCompare';
 import Friends from './pages/Friends/Friends';
 import FriendStats from './pages/FriendStats/FriendStats';
@@ -10,9 +11,11 @@ import News from './pages/News/News';
 import Stats from './pages/Stats/Stats';
 
 function App(): JSX.Element {
+  const location = useLocation();
+
   return (
-    <BrowserRouter>
-      <Switch>
+    <AnimatePresence exitBeforeEnter initial={false}>
+      <Switch location={location} key={location.pathname}>
         <Route path="/news">
           <News />
         </Route>
@@ -41,7 +44,7 @@ function App(): JSX.Element {
           <News />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </AnimatePresence>
   );
 }
 
