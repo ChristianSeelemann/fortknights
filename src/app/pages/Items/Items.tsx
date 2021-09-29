@@ -71,6 +71,7 @@ export default function Items(): JSX.Element {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: 'spring' }}
+                    key={item.mainId}
                   >
                     <Link to={`/item/${item.mainId}`} key={item.mainId}>
                       <Cosmetic

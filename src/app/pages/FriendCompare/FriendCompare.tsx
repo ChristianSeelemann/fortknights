@@ -37,15 +37,21 @@ export default function FriendCompare(): JSX.Element {
         exit={{ opacity: 0 }}
       >
         <section className={styles.friendCompare}>
-          {!isLoading && data && (
-            <>
-              <Header
-                textThin={data[0].data.name}
-                textBold="Compare"
-                icon="close"
-                onClick={() => history.push('/friends')}
-              />
-              <main>
+          <Header
+            textThin={data && data[0].data.name ? data[0].data.name : 'Friend'}
+            textBold="Compare"
+            icon="close"
+            onClick={() => history.push('/friends')}
+          />
+          <main>
+            {!isLoading && data && data[1].data.global_stats === null && (
+              <div className={styles.stats__nogames}>
+                You dont have played any games. So there is nothing to compare
+                :(
+              </div>
+            )}
+            {!isLoading && data && data[1].data.global_stats !== null && (
+              <>
                 <section className={styles.stats__overall}>
                   <h3 className="uncommon">Overall Stats</h3>
                   <section className={styles.stats__itemGroup}>
@@ -1678,16 +1684,16 @@ export default function FriendCompare(): JSX.Element {
                     </div>
                   </section>
                 </section>
-                {showToTop === true && (
-                  <div className={styles.news__toDo}>
-                    <ToTop color="var(--clr-white)" />
-                    <span>This is everything :)</span>
-                  </div>
-                )}
-              </main>
-              <Navigation active="friends" />
-            </>
-          )}
+              </>
+            )}
+            {showToTop === true && (
+              <div className={styles.news__toDo}>
+                <ToTop color="var(--clr-white)" />
+                <span>This is everything :)</span>
+              </div>
+            )}
+          </main>
+          <Navigation active="friends" />
         </section>
       </motion.div>
 

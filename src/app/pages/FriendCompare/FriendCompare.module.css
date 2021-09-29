@@ -8,6 +8,11 @@
   min-height: 100vh;
 }
 
+.stats__nogames {
+  color: var(--clr-white);
+  padding: 1.5rem;
+}
+
 .stats__item {
   padding: 0.5rem;
   display: flex;

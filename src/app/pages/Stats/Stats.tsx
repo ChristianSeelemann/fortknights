@@ -95,6 +95,7 @@ export default function Stats(): JSX.Element {
               </motion.div>
             )}
             {data &&
+              data[0].data.global_stats !== null &&
               data[0].data.result === true &&
               !data[0].data.global_stats.solo &&
               !data[0].data.global_stats.duo &&
@@ -109,6 +110,7 @@ export default function Stats(): JSX.Element {
                 </motion.span>
               )}
             {data &&
+              data[0].data.global_stats !== null &&
               data[0].data.result === true &&
               (data[0].data.global_stats.solo ||
                 data[0].data.global_stats.duo ||
@@ -211,6 +213,7 @@ export default function Stats(): JSX.Element {
                 </motion.section>
               )}
             {data &&
+              data[0].data.global_stats !== null &&
               data[0].data.result === true &&
               data[0].data.global_stats.solo && (
                 <motion.section
@@ -269,6 +272,7 @@ export default function Stats(): JSX.Element {
                 </motion.section>
               )}
             {data &&
+              data[0].data.global_stats !== null &&
               data[0].data.result === true &&
               data[0].data.global_stats.duo && (
                 <motion.section
@@ -324,6 +328,7 @@ export default function Stats(): JSX.Element {
                 </motion.section>
               )}
             {data &&
+              data[0].data.global_stats !== null &&
               data[0].data.result === true &&
               data[0].data.global_stats.squad && (
                 <motion.section
@@ -381,6 +386,9 @@ export default function Stats(): JSX.Element {
                   </section>
                 </motion.section>
               )}
+            <div className={styles.stats__nostats}>
+              You dont have played any games.
+            </div>
             {showToTop === true && (
               <div className={styles.news__toDo}>
                 <ToTop color="var(--clr-white)" />

@@ -15,6 +15,11 @@
   display: inline-block;
 }
 
+.stats__nostats {
+  color: var(--clr-white);
+  padding: 1.5rem;
+}
+
 .stats__item {
   padding: 0.5rem;
   display: flex;
