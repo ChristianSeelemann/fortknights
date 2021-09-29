@@ -108,6 +108,7 @@ export default function Friends(): JSX.Element {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: 'spring' }}
+                    key={user.id}
                   >
                     <ProfileItem
                       username={

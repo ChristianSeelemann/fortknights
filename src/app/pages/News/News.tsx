@@ -102,6 +102,7 @@ export default function News(): JSX.Element {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: 'spring' }}
+                    key={item.id}
                   >
                     <Card
                       key={item.id}
@@ -129,6 +130,7 @@ export default function News(): JSX.Element {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: 'spring' }}
+                    key={item.id}
                   >
                     <Card
                       key={item.title}
@@ -155,6 +157,7 @@ export default function News(): JSX.Element {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: 'spring' }}
+                    key={item.id}
                   >
                     <Card
                       key={item.id}
